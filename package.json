@@ -1,0 +1,28 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "umi build",
+    "precommit": "npm run lint",
+    "lint": "eslint --ext .js src test",
+    "start": "umi dev"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dva": "^2.1.0",
+    "lodash": "^4.17.5",
+    "moment": "^2.20.1",
+    "path-to-regexp": "^2.1.0",
+    "qs": "^6.5.1",
+    "query-string": "^5.1.0",
+    "umi": "^1.0.1",
+    "umi-plugin-dva": "^0.1.6"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.1",
+    "eslint-config-umi": "^0.1.3",
+    "eslint-plugin-flowtype": "^2.46.1",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0"
+  }
+}
