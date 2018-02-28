@@ -7,13 +7,16 @@
     "start": "umi dev"
   },
   "dependencies": {
+    "antd-mobile": "^2.1.1",
     "axios": "^0.18.0",
     "dva": "^2.1.0",
     "lodash": "^4.17.5",
     "moment": "^2.20.1",
     "path-to-regexp": "^2.1.0",
+    "prop-types": "^15.6.1",
     "qs": "^6.5.1",
     "query-string": "^5.1.0",
+    "react": "^16.2.0",
     "umi": "^1.0.1",
     "umi-plugin-dva": "^0.1.6"
   },
