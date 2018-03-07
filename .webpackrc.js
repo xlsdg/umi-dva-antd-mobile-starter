@@ -11,5 +11,13 @@ export default {
   theme: {
     'primary-color': '#7546c9'
   },
-  ignoreMomentLocale: true
+  ignoreMomentLocale: true,
+  env: {
+    production: {
+      publicPath: '/umi-dva-antd-mobile-starter/'
+    },
+    development: {
+      publicPath: '/'
+    }
+  }
 };
