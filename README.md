@@ -7,19 +7,19 @@
 Install dependencies.
 
 ```bash
-$ npm i
+$ yarn
 ```
 
 Start dev server.
 
 ```bash
-$ npm start
+$ yarn start
 ```
 
 Build.
 
 ```bash
-$ npm run build
+$ yarn build
 ```
 
 # License
