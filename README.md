@@ -7,21 +7,27 @@
 Install dependencies.
 
 ```bash
-$ yarn
+yarn
 ```
 
 Start dev server.
 
 ```bash
-$ yarn start
+yarn start
 ```
 
-Build.
+Build for production with minification.
 
 ```bash
-$ yarn build
+yarn build
 ```
 
-# License
+Build for development with minification.
+
+```bash
+yarn dev
+```
+
+## License
 
 MIT
