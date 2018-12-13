@@ -22,7 +22,7 @@ const plugins = [
     locale: {
       antd: true,
       baseNavigator: true,
-      default: 'zh-CN'
+      default: 'zh-CN',
     },
     routes: {
       exclude: []

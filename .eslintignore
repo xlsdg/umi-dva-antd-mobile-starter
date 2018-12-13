@@ -12,3 +12,7 @@
 # umi
 .umi
 .umi-production
+
+# IDE
+.idea
+.vscode
