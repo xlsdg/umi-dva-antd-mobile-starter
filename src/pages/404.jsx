@@ -1,5 +1,8 @@
+/**
+ * title: page.404.title
+ */
+
 import React from 'react';
-import Link from 'umi/link';
 import { formatMessage } from 'umi/locale';
 import ReactDocumentTitle from 'react-document-title';
 

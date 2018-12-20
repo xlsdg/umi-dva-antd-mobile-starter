@@ -1,4 +1,4 @@
 export default {
-  'page.index.title': '首页',
+  'page.index.title': 'Index',
   'page.404.title': '404',
 };

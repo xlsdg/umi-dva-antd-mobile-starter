@@ -27,6 +27,10 @@ const plugins = [
     routes: {
       exclude: []
     },
+    title: {
+      defaultTitle: 'ANTD MOBILE',
+      useLocale: true,
+    },
   }],
 ];
 

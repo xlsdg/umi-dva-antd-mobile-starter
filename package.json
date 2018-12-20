@@ -6,9 +6,9 @@
     "moment": "^2.23.0",
     "prop-types": "^15.6.2",
     "qs": "^6.6.0",
-    "react": "^16.6.3",
+    "react": "^16.7.0",
     "react-document-title": "^2.0.3",
-    "react-dom": "^16.6.3",
+    "react-dom": "^16.7.0",
     "react-loading": "^2.0.3"
   },
   "devDependencies": {
@@ -38,7 +38,7 @@
     "umi": "^2.2.8",
     "umi-plugin-react": "^1.2.3",
     "vconsole-webpack-plugin": "^1.4.2",
-    "webpack": "^4.27.1"
+    "webpack": "^4.28.0"
   },
   "engines": {
     "node": ">=8.0.0"

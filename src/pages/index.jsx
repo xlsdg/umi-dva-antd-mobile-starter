@@ -1,3 +1,7 @@
+/**
+ * title: page.index.title
+ */
+
 import React from 'react';
 import { formatMessage } from 'umi/locale';
 import ReactDocumentTitle from 'react-document-title';
