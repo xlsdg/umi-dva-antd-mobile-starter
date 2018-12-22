@@ -2,6 +2,7 @@
   "dependencies": {
     "antd-mobile": "^2.2.6",
     "axios": "^0.18.0",
+    "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "moment": "^2.23.0",
     "prop-types": "^15.6.2",
