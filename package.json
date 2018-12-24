@@ -20,7 +20,7 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "babel-plugin-transform-remove-debugger": "^6.9.4",
     "cross-env": "^5.2.0",
-    "eslint": "^5.10.0",
+    "eslint": "^5.11.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-alloy": "^1.4.2",
     "eslint-config-prettier": "^3.3.0",
@@ -39,7 +39,7 @@
     "umi": "^2.2.8",
     "umi-plugin-react": "^1.2.3",
     "vconsole-webpack-plugin": "^1.4.2",
-    "webpack": "^4.28.1"
+    "webpack": "^4.28.2"
   },
   "engines": {
     "node": ">=8.0.0"
