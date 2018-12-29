@@ -47,18 +47,13 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": [
-    "prettier"
-  ],
+  "plugins": ["prettier"],
   "root": true,
   "rules": {
     "import/no-unresolved": [
       "error",
       {
-        "ignore": [
-          "^@/",
-          "^umi/"
-        ]
+        "ignore": ["^@/", "^umi/"]
       }
     ],
     "import/prefer-default-export": "off",
@@ -68,19 +63,13 @@
     "react/forbid-component-props": [
       "error",
       {
-        "forbid": [
-          "id",
-          "style"
-        ]
+        "forbid": ["id", "style"]
       }
     ],
     "react/forbid-dom-props": [
       "error",
       {
-        "forbid": [
-          "id",
-          "style"
-        ]
+        "forbid": ["id", "style"]
       }
     ]
   }
