@@ -45,6 +45,7 @@ export default {
   theme: {
     '@brand-primary': '#0078ff',
   },
+  treeShaking: true,
   targets: {
     android: 4,
     ios: 6,

@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "baseUrl": ".",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
+    "module": "es2015",
+    "moduleResolution": "node",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "sourceMap": true,
+    "target": "es5"
   },
   "exclude": ["dist", "node_modules"],
   "include": ["./src/**/*"]
