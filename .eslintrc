@@ -30,11 +30,7 @@
     "airbnb",
     "eslint-config-alloy/react",
     "plugin:prettier/recommended",
-    "prettier/flowtype",
-    "prettier/react",
-    "prettier/standard",
-    "prettier/unicorn",
-    "prettier/vue"
+    "prettier/react"
   ],
   "globals": {
     "BASE_HOST": true
