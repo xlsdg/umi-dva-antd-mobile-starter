@@ -1,7 +1,7 @@
 import qs from 'qs';
 import _ from 'lodash';
 import Axios from 'axios';
-import { getLocale } from 'umi/locale';
+import { getLocale } from 'umi-plugin-react/locale';
 
 // import { toast } from '@/utils/helper';
 

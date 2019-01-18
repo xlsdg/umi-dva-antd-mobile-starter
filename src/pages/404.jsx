@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-react/locale';
 import ReactDocumentTitle from 'react-document-title';
 
 import styles from './404.less';

@@ -26,12 +26,7 @@
     "webextensions": false,
     "worker": false
   },
-  "extends": [
-    "airbnb",
-    "eslint-config-alloy/react",
-    "plugin:prettier/recommended",
-    "prettier/react"
-  ],
+  "extends": ["airbnb", "eslint-config-alloy/react", "plugin:prettier/recommended", "prettier/react"],
   "globals": {
     "BASE_HOST": true
   },
@@ -46,6 +41,12 @@
   "plugins": ["prettier"],
   "root": true,
   "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "ignore": ["^@/", "^umi/"]
+      }
+    ],
     "import/no-unresolved": [
       "error",
       {
