@@ -5,6 +5,7 @@
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "moment": "^2.23.0",
+    "path-to-regexp": "^3.0.0",
     "prop-types": "^15.6.2",
     "qs": "^6.6.0",
     "react": "^16.7.0",
