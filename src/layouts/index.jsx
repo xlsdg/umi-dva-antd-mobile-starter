@@ -1,36 +1,53 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import withRouter from 'umi/withRouter';
 
 import styles from './index.less';
 
-function renderHeader(props) {
-  return <header className={styles.header}>Header</header>;
+class BasicLayout extends React.Component {
+  state = {};
+
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+
+  static defaultProps = {};
+
+  componentDidUpdate(prevProps) {
+    const that = this;
+    const { location } = that.props;
+
+    if (location !== prevProps.location) {
+      window.scrollTo(0, 0);
+    }
+  }
+
+  renderHeader = () => {
+    return <header className={styles.header}>Header</header>;
+  };
+
+  renderContent = () => {
+    const that = this;
+    const { children } = that.props;
+
+    return <main className={styles.content}>{children}</main>;
+  };
+
+  renderFooter = () => {
+    return <footer className={styles.footer}>Footer</footer>;
+  };
+
+  render() {
+    const that = this;
+
+    return (
+      <div className={styles.main}>
+        {that.renderHeader()}
+        {that.renderContent()}
+        {that.renderFooter()}
+      </div>
+    );
+  }
 }
 
-function renderContent(props) {
-  const { children } = props;
-
-  return <main className={styles.content}>{children}</main>;
-}
-
-function renderFooter(props) {
-  return <footer className={styles.footer}>Footer</footer>;
-}
-
-function BasicLayout(props) {
-  return (
-    <div className={styles.main}>
-      {renderHeader(props)}
-      {renderContent(props)}
-      {renderFooter(props)}
-    </div>
-  );
-}
-
-BasicLayout.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-// BasicLayout.defaultProps = {};
-
-export default BasicLayout;
+export default withRouter(BasicLayout);
