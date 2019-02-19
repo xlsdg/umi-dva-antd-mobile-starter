@@ -9,9 +9,7 @@
     "prop-types": "^15.7.2",
     "qs": "^6.6.0",
     "react": "^16.8.2",
-    "react-document-title": "^2.0.3",
-    "react-dom": "^16.8.2",
-    "react-loading": "^2.0.3"
+    "react-document-title": "^2.0.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",
@@ -21,7 +19,7 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "babel-plugin-transform-remove-debugger": "^6.9.4",
     "cross-env": "^5.2.0",
-    "eslint": "^5.14.0",
+    "eslint": "^5.14.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-alloy": "^1.4.2",
     "eslint-config-prettier": "^4.0.0",
@@ -37,10 +35,9 @@
     "stylelint-config-prettier": "^4.0.0",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-order": "^2.0.0",
-    "umi": "^2.5.0",
-    "umi-plugin-react": "^1.5.0",
-    "vconsole-webpack-plugin": "^1.4.2",
-    "webpack": "^4.29.4"
+    "umi": "^2.5.1",
+    "umi-plugin-react": "^1.5.1",
+    "vconsole-webpack-plugin": "^1.4.2"
   },
   "engines": {
     "node": ">=8.0.0"
