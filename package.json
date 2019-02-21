@@ -35,8 +35,8 @@
     "stylelint-config-prettier": "^4.0.0",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-order": "^2.0.0",
-    "umi": "^2.5.3",
-    "umi-plugin-react": "^1.5.1",
+    "umi": "^2.5.4",
+    "umi-plugin-react": "^1.5.2",
     "vconsole-webpack-plugin": "^1.4.2"
   },
   "engines": {
