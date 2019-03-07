@@ -65,6 +65,10 @@ const plugins = [
   ],
 ];
 
+const define = {
+  'process.env.NODE_ENV': process.env.NODE_ENV,
+};
+
 // https://umijs.org/config/
 export default {
   plugins,
@@ -88,6 +92,7 @@ export default {
     '@brand-primary': '#0078ff',
   },
   treeShaking: true,
+  define,
   // externals: {},
   // alias: {},
   // devServer: {},
