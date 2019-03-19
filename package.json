@@ -19,7 +19,7 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "babel-plugin-transform-remove-debugger": "^6.9.4",
     "cross-env": "^5.2.0",
-    "eslint": "^5.15.2",
+    "eslint": "^5.15.3",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-alloy": "^1.4.2",
     "eslint-config-prettier": "^4.1.0",
