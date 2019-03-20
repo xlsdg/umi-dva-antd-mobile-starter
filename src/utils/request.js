@@ -3,26 +3,28 @@ import _ from 'lodash';
 import Axios from 'axios';
 import { getLocale } from 'umi-plugin-react/locale';
 
-// import { toast } from '@/utils/helper';
-
 const reqConfig = {
   withCredentials: true,
 };
 
 const Request = Axios.create(reqConfig);
 
-function fetchData(method, url, data, inConfig = false) {
+function fetchData(method, url, data, isDataInConfig = false) {
+  const headers = {};
+
   let cancel = () => {};
   const cancelToken = new Axios.CancelToken(c => {
     cancel = c;
   });
 
-  const promise = inConfig
+  const promise = isDataInConfig
     ? Request[method](url, {
         params: data,
+        headers,
         cancelToken,
       })
     : Request[method](url, data, {
+        headers,
         cancelToken,
       });
 
@@ -52,108 +54,71 @@ function del(url, data) {
   return fetchData('delete', url, data, true);
 }
 
-function throwReqError(resp) {
-  const error = new Error(resp.statusText);
-  error.resp = resp;
-  // throw error;
-  return Promise.reject(error);
-}
-
-function checkStatus(resp) {
-  if (resp.status >= 200 && resp.status < 300) {
-    return resp;
-  }
-
-  // toast(`[${resp.status}]: ${resp.url}`);
-
-  return throwReqError(resp);
-}
-
-// function throwSrvError(body) {
-//   const error = new Error(body.msg);
-//   error.srv = body;
-//   // throw error;
-//   return Promise.reject(error);
-// }
-
-// function checkCode(body) {
-//   // if (body.code > 0) {
-//   //   switch (body.code) {
-//   //     case 302:
-//   //       window.location.href = body.data;
-//   //       break;
-//   //     case 403:
-//   //       return throwSrvError(body);
-//   //     default:
-//   //       toast(`[${body.code}]: ${body.msg}`);
-//   //       break;
-//   //   }
-//   // } else if (body.code < 0) {
-//   //   toast(body.msg);
-//   // }
-
-//   if (body.code !== 0) {
-//     toast(`[${body.code}]: ${body.msg}`);
-//     // return throwSrvError(body);
-//   }
-
-//   return body;
-// }
-
-function handleReqError(err) {
+function handleReqError(err, onError) {
   if (Axios.isCancel(err)) {
-    // console.warn('Request canceled', err.message);
     return Promise.reject(err);
   }
 
-  throw err;
+  if (_.isFunction(onError)) {
+    return onError(err);
+  }
+
+  return Promise.reject(err);
 }
 
-function handleRequest(req) {
+function handleRequest(req, onError) {
   return {
     cancel: req.cancel,
-    promise: req.promise
-      .then(checkStatus)
-      .then(resp => resp.data)
-      // .then(checkCode)
-      .catch(handleReqError),
+    promise: req.promise.then(resp => resp.data).catch(err => handleReqError(err, onError)),
   };
 }
 
-export function getJson(url, data) {
+export function getJson(url, data, onError) {
   const d = data ? _.cloneDeep(data) : {};
   d.t = _.now();
   d.lang = getLocale();
-  return handleRequest(get(url, d));
+
+  const req = get(url, d);
+  return handleRequest(req, onError);
 }
 
-export function postJson(url, data) {
+export function postJson(url, data, onError) {
   const d = data ? _.cloneDeep(data) : {};
   d.lang = getLocale();
-  return handleRequest(post(url, d));
+
+  const req = post(url, d);
+  return handleRequest(req, onError);
 }
 
-export function postForm(url, data) {
+export function postForm(url, data, onError) {
   const d = data ? _.cloneDeep(data) : {};
   d.lang = getLocale();
-  return handleRequest(post(url, qs.stringify(d)));
+
+  const req = post(url, qs.stringify(d));
+  return handleRequest(req, onError);
 }
 
-export function putJson(url, data) {
+export function putJson(url, data, onError) {
   const d = data ? _.cloneDeep(data) : {};
   d.lang = getLocale();
-  return handleRequest(put(url, d));
+
+  const req = put(url, d);
+  return handleRequest(req, onError);
 }
 
-export function patchJson(url, data) {
+export function patchJson(url, data, onError) {
   const d = data ? _.cloneDeep(data) : {};
   d.lang = getLocale();
-  return handleRequest(patch(url, d));
+
+  const req = patch(url, d);
+  return handleRequest(req, onError);
 }
 
-export function deleteJson(url, data) {
+export function deleteJson(url, data, onError) {
   const d = data ? _.cloneDeep(data) : {};
   d.t = _.now();
   d.lang = getLocale();
-  return handleRequest(del(url, d));
+
+  const req = del(url, d);
+  return handleRequest(req, onError);
 }
