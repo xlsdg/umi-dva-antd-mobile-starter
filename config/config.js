@@ -15,7 +15,7 @@ const plugins = [
     'umi-plugin-react',
     {
       dva: {
-        immer: true,
+        immer: false,
         dynamicImport: true,
         hmr: true,
       },
@@ -78,6 +78,7 @@ export default {
   outputPath: './dist',
   // base: '/',
   // publicPath: '/',
+  // cssPublicPath: '/',
   runtimePublicPath: false,
   // mountElementId: 'root',
   minimizer: 'uglifyjs', // 'terserjs'
@@ -86,6 +87,9 @@ export default {
   // context: {},
   // exportStatic: { htmlSuffix: false, dynamicRoot: false },
   // singular: false,
+  // mock: {
+  //   exclude: [],
+  // },
 
   chainWebpack,
   theme: { // https://github.com/ant-design/ant-design-mobile/blob/master/components/style/themes/default.less
@@ -107,8 +111,12 @@ export default {
   // copy: [],
   // proxy: {},
   // sass: {},
+  // 'manifest': {
+  //   "basePath": '/',
+  // },
   ignoreMomentLocale: true,
   // lessLoaderOptions: {},
   // cssLoaderOptions: {},
   // autoprefixer: { browserslist, flexbox: 'no-2019' },
+  // uglifyJSOptions: {},
 };

@@ -26,7 +26,11 @@
     "webextensions": false,
     "worker": false
   },
-  "extends": ["airbnb", "eslint-config-alloy/react", "plugin:prettier/recommended", "prettier/react"],
+  "extends": [
+    "eslint-config-alloy/react",
+    "plugin:prettier/recommended",
+    "prettier/react"
+  ],
   "globals": {
     "BASE_HOST": true
   },
@@ -38,31 +42,12 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react-hooks", "prettier"],
+  "plugins": [
+    "react-hooks",
+    "prettier"
+  ],
   "root": true,
   "rules": {
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "ignore": ["^@/", "^umi/"]
-      }
-    ],
-    "import/no-unresolved": [
-      "error",
-      {
-        "ignore": ["^@/", "^umi/"]
-      }
-    ],
-    "import/prefer-default-export": "off",
-    "import/order": [
-      "error",
-      {
-        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
-        "newlines-between": "always"
-      }
-    ],
-    "jsx-a11y/click-events-have-key-events": "off",
-    "jsx-a11y/no-noninteractive-element-interactions": "off",
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
     "react/forbid-component-props": [
