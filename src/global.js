@@ -1,5 +1,8 @@
 // (function main(win) {
 //   if (win.localStorage) {
-//     win.localStorage.setItem('umi_locale', 'zh-CN');
+//     const lang = win.localStorage.getItem('umi_locale');
+//     if (!lang) {
+//       win.localStorage.setItem('umi_locale', 'en-US');
+//     }
 //   }
 // })(window);
