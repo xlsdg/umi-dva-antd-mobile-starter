@@ -3,7 +3,7 @@
 
 export const dva = {
   config: {
-    onError(error, dispatch) {
+    onError: (error, dispatch) => {
       error.preventDefault();
       // message.error(formatMessage({ id: 'page.404.request' }));
     },
