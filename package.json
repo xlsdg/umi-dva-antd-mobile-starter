@@ -8,8 +8,7 @@
     "path-to-regexp": "^3.0.0",
     "prop-types": "^15.7.2",
     "qs": "^6.7.0",
-    "react": "^16.8.6",
-    "react-document-title": "^2.0.3"
+    "react": "^16.8.6"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",

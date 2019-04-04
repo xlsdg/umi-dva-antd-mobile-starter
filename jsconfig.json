@@ -1,11 +1,23 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "emitDecoratorMetadata": true,
+    "noLib": false,
+    "target": "esnext",
+    "checkJs": false,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": false,
+    "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "exclude": ["dist", "node_modules"]
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*",
+    "dist",
+    "bower_components",
+    "tmp",
+    "temp",
+    "jspm_packages"
+  ]
 }
