@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "antd-mobile": "^2.2.12",
+    "antd-mobile": "^2.2.13",
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
@@ -23,10 +23,10 @@
     "eslint-config-alloy": "^1.4.2",
     "eslint-config-prettier": "^4.2.0",
     "eslint-plugin-prettier": "^3.0.1",
-    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react": "^7.13.0",
     "eslint-plugin-react-hooks": "^1.6.0",
-    "husky": "^2.1.0",
-    "lint-staged": "^8.1.5",
+    "husky": "^2.2.0",
+    "lint-staged": "^8.1.6",
     "lodash-webpack-plugin": "^0.11.5",
     "prettier": "^1.17.0",
     "stylelint": "^10.0.1",
