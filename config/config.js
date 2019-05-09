@@ -26,7 +26,7 @@ const plugins = [
       },
       locale: {
         default: 'zh-CN',
-        baseNavigator: true,
+        baseNavigator: false,
         antd: true,
       },
       library: 'react',
