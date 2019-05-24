@@ -5,13 +5,17 @@ import withRouter from 'umi/withRouter';
 import styles from './index.less';
 
 class BasicLayout extends React.Component {
-  state = {};
-
   static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
   static defaultProps = {};
+
+  constructor() {
+    super(...arguments);
+    // console.log('constructor', arguments);
+    this.state = {};
+  }
 
   componentDidUpdate(prevProps) {
     const that = this;
@@ -41,7 +45,7 @@ class BasicLayout extends React.Component {
     const that = this;
 
     return (
-      <div className={styles.main}>
+      <div className={styles.container}>
         {that.renderHeader()}
         {that.renderContent()}
         {that.renderFooter()}

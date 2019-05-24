@@ -32,7 +32,7 @@ const plugins = [
       library: 'react',
       dynamicImport: {
         // webpackChunkName: true,
-        loadingComponent: './components/PageLoading/index.jsx',
+        loadingComponent: './components/Loading/index.jsx',
         // level: ,
       },
       dll: false, // { include: , exclude: , }

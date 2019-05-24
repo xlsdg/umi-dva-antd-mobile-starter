@@ -2,16 +2,16 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 
 export default class ErrorBoundary extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hasError: null,
-    };
-  }
-
   static getDerivedStateFromError(error) {
     return {
       hasError: error,
+    };
+  }
+
+  constructor() {
+    super(...arguments);
+    this.state = {
+      hasError: null,
     };
   }
 

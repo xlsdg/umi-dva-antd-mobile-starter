@@ -6,14 +6,12 @@ import React from 'react';
 
 import styles from './index.less';
 
-Index.propTypes = {};
-
-Index.defaultProps = {};
-
-function Index(props) {
-  return (
-    <div className={styles.container}>Index</div>
-  );
+function Page(props) {
+  return <div className={styles.container}>Index</div>;
 }
 
-export default Index;
+// Page.propTypes = {};
+
+// Page.defaultProps = {};
+
+export default Page;
