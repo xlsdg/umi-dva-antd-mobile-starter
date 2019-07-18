@@ -12,8 +12,8 @@
     "reselect": "^4.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.0.0",
-    "@commitlint/config-conventional": "^8.0.0",
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
     "babel-eslint": "^10.0.2",
     "babel-plugin-lodash": "^3.3.4",
     "cross-env": "^5.2.0",
