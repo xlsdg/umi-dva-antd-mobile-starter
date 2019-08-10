@@ -49,7 +49,7 @@ const plugins = [
       //   }
       // },
       hd: true,
-      fastClick: true,
+      fastClick: false,
       title: {
         defaultTitle: 'ANTD MOBILE',
         // format: '{parent}{separator}{current}',
