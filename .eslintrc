@@ -27,7 +27,8 @@
     "worker": false
   },
   "extends": [
-    "eslint-config-alloy/react",
+    "alloy",
+    "alloy/react",
     "plugin:prettier/recommended",
     "prettier/react"
   ],
