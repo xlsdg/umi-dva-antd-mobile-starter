@@ -1,12 +1,4 @@
-import VConsoleWebpackPlugin from 'vconsole-webpack-plugin';
-
-const chainWebpack = config => {
-  config.plugin('vconsole').use(VConsoleWebpackPlugin, [
-    {
-      enable: true,
-    },
-  ]);
-};
+// const chainWebpack = config => {};
 
 const CDN_HOST = '';
 const BASE_PATH = '/';
@@ -23,7 +15,7 @@ export default {
   publicPath: PUBLIC_PATH,
   cssPublicPath: PUBLIC_PATH,
 
-  chainWebpack,
+  // chainWebpack,
   define,
   manifest: {
     basePath: PUBLIC_PATH,
