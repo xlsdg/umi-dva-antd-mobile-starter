@@ -20,7 +20,7 @@
     "eslint": "^6.7.2",
     "eslint-config-alloy": "^3.4.0",
     "eslint-config-prettier": "^6.7.0",
-    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "husky": "^3.1.0",
@@ -31,9 +31,9 @@
     "stylelint-config-prettier": "^8.0.0",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-order": "^3.1.1",
-    "stylelint-prettier": "^1.1.1",
-    "umi": "^2.12.5",
-    "umi-plugin-react": "^1.14.8",
+    "stylelint-prettier": "^1.1.2",
+    "umi": "^2.12.6",
+    "umi-plugin-react": "^1.14.9",
     "vconsole": "^3.3.4"
   },
   "engines": {
