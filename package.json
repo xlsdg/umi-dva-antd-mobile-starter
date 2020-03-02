@@ -1,15 +1,16 @@
 {
   "dependencies": {
     "antd-mobile": "^2.3.1",
-    "axios": "^0.19.2",
     "classnames": "^2.2.6",
+    "dva": "^2.6.0-beta.20",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "path-to-regexp": "^6.1.0",
     "prop-types": "^15.7.2",
     "qs": "^6.9.1",
     "react": "^16.13.0",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "umi-request": "^1.2.19"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",

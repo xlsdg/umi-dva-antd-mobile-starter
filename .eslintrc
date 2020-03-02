@@ -28,7 +28,8 @@
   },
   "extends": ["alloy", "alloy/react", "plugin:prettier/recommended", "prettier/react"],
   "globals": {
-    "BASE_HOST": true
+    "BASE_HOST": true,
+    "AUTH_HOST": true
   },
   "parser": "babel-eslint",
   "parserOptions": {

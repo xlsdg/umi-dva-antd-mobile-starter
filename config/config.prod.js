@@ -1,12 +1,11 @@
+import Constant, { CDN_HOST, BASE_PATH } from './constant.prod';
+
 // const chainWebpack = config => {};
 
-const CDN_HOST = '';
-const BASE_PATH = '/';
 const PUBLIC_PATH = `${CDN_HOST}${BASE_PATH}`;
 
 const define = {
-  BASE_HOST: 'https://api.baidu.com',
-  // BASE_HOST: 'http://127.0.0.1:8080',
+  ...Constant,
 };
 
 // https://umijs.org/config/

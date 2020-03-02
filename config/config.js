@@ -1,5 +1,7 @@
 import LodashWebpackPlugin from 'lodash-webpack-plugin';
 
+import Constant from './constant';
+
 const chainWebpack = config => {
   config.plugin('lodash').use(LodashWebpackPlugin, [
     {
@@ -25,8 +27,8 @@ const plugins = [
         // update: () => {},
       },
       locale: {
-        default: 'zh-CN',
-        baseNavigator: false,
+        // default: 'zh-CN',
+        baseNavigator: true,
         antd: true,
         baseSeparator: '-',
       },
@@ -71,6 +73,8 @@ const plugins = [
 const define = {
   'process.env.NODE_ENV': process.env.NODE_ENV,
   'process.env.UMI_ENV': process.env.UMI_ENV,
+
+  ...Constant,
 };
 
 // https://umijs.org/config/
@@ -96,14 +100,12 @@ export default {
   // },
   // block: {
   //   defaultGitUrl: 'https://github.com/ant-design/pro-blocks',
+  //   npmClient: 'cnpm',
   // },
   ssr: false,
 
   chainWebpack,
-  theme: {
-    // https://github.com/ant-design/ant-design-mobile/blob/master/components/style/themes/default.less
-    '@brand-primary': '#0078ff',
-  },
+  theme: 'config/theme.js',
   treeShaking: true,
   define,
   // externals: {},
