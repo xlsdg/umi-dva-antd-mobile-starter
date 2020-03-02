@@ -17,7 +17,7 @@ const plugins = [
     'umi-plugin-react',
     {
       dva: {
-        immer: false,
+        immer: true,
         dynamicImport: true,
         hmr: true,
       },

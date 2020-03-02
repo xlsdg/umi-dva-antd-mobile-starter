@@ -10,8 +10,8 @@ const Loading = React.memo(props => {
   return <div className={ClassNames(styles.container, className)}>Loading</div>;
 });
 
-// Loading.propTypes = {};
+Loading.propTypes = {};
 
-// Loading.defaultProps = {};
+Loading.defaultProps = {};
 
 export default Loading;

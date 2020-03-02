@@ -44,7 +44,6 @@ export default {
       // console.log(payload);
       const resp = yield call(HomeApi.getData, {});
       // console.log(resp);
-
       if (hasArray(resp.banner)) {
         yield put(StateAt({ banner: resp.banner }));
       }

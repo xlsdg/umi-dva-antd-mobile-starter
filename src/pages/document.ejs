@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="renderer" content="webkit" />
 
-  <meta http-equiv="x-dns-prefetch-control" content="on" />
-  <link rel="dns-prefetch" href="//www.baidu.com" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="renderer" content="webkit" />
 
-  <meta name="format-detection" content="telephone=no,email=no" />
-  <meta name="google" value="notranslate" />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <link rel="dns-prefetch" href="//www.baidu.com" />
 
-  <link type="image/x-icon" rel="icon" href="<%= context.publicPath %>favicon.ico" />
-  <link type="image/x-icon" rel="shortcut icon" href="<%= context.publicPath %>favicon.ico" />
-  <link type="image/x-icon" rel="bookmark" href="<%= context.publicPath %>favicon.ico" />
+    <meta name="format-detection" content="telephone=no,email=no" />
+    <meta name="google" value="notranslate" />
 
-  <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
+    <link rel="apple-touch-icon" sizes="180x180" href="<%= context.publicPath %>apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= context.publicPath %>favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= context.publicPath %>favicon-16x16.png" />
 
-  <title><%= context.title %></title>
-</head>
-<body>
-  <div id="root"></div>
-</body>
+    <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <title><%= context.title %></title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+
 </html>

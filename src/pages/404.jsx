@@ -6,12 +6,13 @@ import React from 'react';
 
 import styles from './404.less';
 
-function Page(props) {
+const Page = React.memo(props => {
+  // const {  } = props;
   return <div className={styles.container}>404</div>;
-}
+});
 
-// Page.propTypes = {};
+Page.propTypes = {};
 
-// Page.defaultProps = {};
+Page.defaultProps = {};
 
 export default Page;
