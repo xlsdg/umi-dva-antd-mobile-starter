@@ -2,12 +2,8 @@
 import Redirect from 'umi/redirect';
 
 export default props => {
-  const isAuth = true;
-  const { location } = props;
+  const { children } = props;
 
-  if (isAuth) {
-    return <Redirect to={`/list${location.search}`} />;
-  } else {
-    return props.children;
-  }
+  const isAuth = true;
+  return isAuth ? <Redirect to="/" /> : children;
 };

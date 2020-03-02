@@ -1,18 +1,20 @@
 import _ from 'lodash';
 
-export class ReqError extends Error {
-  constructor(type, payload) {
+export class ResponseError extends Error {
+  constructor(props = {}) {
+    const { message, response } = props;
     // Pass remaining arguments (including vendor specific ones) to parent constructor
-    super(type);
+    super(message || 'ResponseError');
 
+    const that = this;
     // Maintains proper stack trace for where our error was thrown (only available on V8)
     if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, ReqError);
+      Error.captureStackTrace(that, ResponseError);
     }
 
-    this.name = 'ReqError';
-    this.timestamp = _.now();
-    this.type = type;
-    this.payload = payload;
+    that.name = 'ResponseError';
+    // that.type = '';
+    that.timestamp = _.now();
+    that.response = response;
   }
 }

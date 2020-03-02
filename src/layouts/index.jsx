@@ -1,56 +1,43 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import withRouter from 'umi/withRouter';
 
-import styles from './index.less';
+import HomeLayout from './Home';
 
-class BasicLayout extends React.Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
+// import styles from './index.less';
 
-  static defaultProps = {};
+class BasicLayout extends React.PureComponent {
+  // static propTypes = {};
 
-  constructor() {
-    super(...arguments);
-    // console.log('constructor', arguments);
-    this.state = {};
-  }
+  // static defaultProps = {};
 
-  componentDidUpdate(prevProps) {
+  // constructor() {
+  //   super(...arguments);
+  //   // console.log('constructor', arguments);
+  //   const that = this;
+  //   that.state = {};
+  // }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
     const that = this;
+    // console.log('componentDidUpdate', prevProps, that.props, prevState, that.state, snapshot);
     const { location } = that.props;
+    // const {  } = that.state;
 
     if (location !== prevProps.location) {
       window.scrollTo(0, 0);
     }
   }
 
-  renderHeader = () => {
-    return <header className={styles.header}>Header</header>;
-  };
-
-  renderContent = () => {
-    const that = this;
-    const { children } = that.props;
-
-    return <main className={styles.content}>{children}</main>;
-  };
-
-  renderFooter = () => {
-    return <footer className={styles.footer}>Footer</footer>;
-  };
-
   render() {
     const that = this;
+    // console.log('render', that.props, that.state);
+    const { location, children } = that.props;
+    // const {  } = that.state;
 
-    return (
-      <div className={styles.container}>
-        {that.renderHeader()}
-        {that.renderContent()}
-        {that.renderFooter()}
-      </div>
-    );
+    let layout = <HomeLayout>{children}</HomeLayout>;
+
+    return layout;
   }
 }
 

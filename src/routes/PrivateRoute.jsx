@@ -2,12 +2,13 @@
 import Redirect from 'umi/redirect';
 
 export default props => {
-  const isAuth = true;
-  const { location } = props;
+  const { location, children } = props;
+  const { pathname, search } = location;
 
-  if (isAuth) {
-    return props.children;
-  } else {
-    return <Redirect to={`/${location.search}`} />;
-  }
+  const isAuth = true;
+  return isAuth ? (
+    children
+  ) : (
+    <Redirect to={`/user/login?redirect_uri=${window.encodeURIComponent(`${pathname}${search}`)}`} />
+  );
 };
