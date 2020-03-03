@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import withRouter from 'umi/withRouter';
+import { withRouter } from 'umi';
 
 import HomeLayout from './Home';
 

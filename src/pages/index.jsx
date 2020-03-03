@@ -1,23 +1,21 @@
-/**
- * title: page.index.title
- */
 import React from 'react';
 import { connect } from 'dva';
-// import { formatMessage } from 'umi-plugin-react/locale';
+// import { formatMessage } from 'umi';
 
 import { NS_HOME } from '@/redux/namespaces/index';
 import { generateSetStateAction } from '@/redux/actions/index';
 
 import styles from './index.less';
 
-const Page = React.memo(props => {
+const Content = React.memo(props => {
   // const {  } = props;
+  // console.log(props);
   return <div className={styles.container}>Home</div>;
 });
 
-Page.propTypes = {};
+Content.propTypes = {};
 
-Page.defaultProps = {};
+Content.defaultProps = {};
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -43,4 +41,8 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Page);
+const Page = connect(mapStateToProps, mapDispatchToProps, mergeProps)(Content);
+
+Page.title = 'page.index.title';
+
+export default Page;

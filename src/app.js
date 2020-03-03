@@ -1,6 +1,6 @@
 import _ from 'lodash';
 // import { message } from 'antd';
-// import { formatMessage } from 'umi-plugin-react/locale';
+// import { formatMessage } from 'umi';
 
 export const dva = {
   config: {
@@ -24,7 +24,7 @@ export const dva = {
   // plugins: [],
 };
 
-// export function patchRoutes(routes) {
+// export function patchRoutes({ routes }) {
 //   console.log(arguments);
 // }
 
@@ -40,6 +40,6 @@ export const dva = {
 //   console.log(arguments);
 // }
 
-// export function onRouteChange({ location, routes, action }) {
+// export function onRouteChange({ routes, matchedRoutes, location, action }) {
 //   console.log(arguments);
 // }

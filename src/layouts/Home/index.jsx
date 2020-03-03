@@ -2,11 +2,9 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 // import ClassNames from 'classnames';
-// import Link from 'umi/link';
-// import Router from 'umi/router';
-// import Redirect from 'umi/redirect';
+// import { Link, history, Redirect } from 'umi';
 // import {  } from 'antd-mobile';
-// import { formatMessage } from 'umi-plugin-react/locale';
+// import { formatMessage } from 'umi';
 
 import styles from './index.less';
 
