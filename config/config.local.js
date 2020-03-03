@@ -1,7 +1,5 @@
 import Constant, { CDN_HOST, BASE_PATH } from './constant.local';
 
-// const chainWebpack = config => {};
-
 const PUBLIC_PATH = `${CDN_HOST}${BASE_PATH}`;
 
 const define = {
@@ -11,15 +9,14 @@ const define = {
 // https://umijs.org/config/
 export default {
   base: BASE_PATH,
-  publicPath: PUBLIC_PATH,
-  cssPublicPath: PUBLIC_PATH,
-
-  // chainWebpack,
+  cssLoader: {
+    modules: {
+      localIdentName: '[local]--[hash:base64:5]',
+    },
+  },
   define,
   manifest: {
     basePath: PUBLIC_PATH,
   },
-  cssLoaderOptions: {
-    localIdentName: '[local]--[hash:base64:5]',
-  },
+  publicPath: PUBLIC_PATH,
 };

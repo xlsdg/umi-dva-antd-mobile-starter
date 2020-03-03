@@ -5,7 +5,8 @@
     "module": "es2015",
     "moduleResolution": "node",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@@/*": ["src/.umi/*"]
     },
     "sourceMap": true,
     "target": "es5"

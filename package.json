@@ -9,12 +9,16 @@
     "prop-types": "^15.7.2",
     "qs": "^6.9.1",
     "react": "^16.13.0",
+    "react-dom": "^16.13.0",
     "reselect": "^4.0.0",
     "umi-request": "^1.2.19"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
+    "@umijs/plugin-antd": "^0.3.0",
+    "@umijs/plugin-dva": "^0.3.0",
+    "@umijs/plugin-locale": "^0.3.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-lodash": "^3.3.4",
     "cross-env": "^7.0.0",
@@ -33,12 +37,11 @@
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-order": "^4.0.0",
     "stylelint-prettier": "^1.1.2",
-    "umi": "^2.13.3",
-    "umi-plugin-react": "^1.15.2",
+    "umi": "^3.0.1",
     "vconsole": "^3.3.4"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10.13.0"
   },
   "private": true,
   "scripts": {

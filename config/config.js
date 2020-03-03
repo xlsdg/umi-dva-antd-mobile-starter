@@ -1,6 +1,7 @@
 import LodashWebpackPlugin from 'lodash-webpack-plugin';
 
 import Constant from './constant';
+import Theme from './theme';
 
 const chainWebpack = config => {
   config.plugin('lodash').use(LodashWebpackPlugin, [
@@ -11,64 +12,23 @@ const chainWebpack = config => {
   ]);
 };
 
-// https://umijs.org/plugin/umi-plugin-react.html
-const plugins = [
-  [
-    'umi-plugin-react',
-    {
-      dva: {
-        immer: true,
-        dynamicImport: true,
-        hmr: true,
-      },
-      antd: true,
-      routes: {
-        exclude: [],
-        // update: () => {},
-      },
-      locale: {
-        // default: 'zh-CN',
-        baseNavigator: true,
-        antd: true,
-        baseSeparator: '-',
-      },
-      library: 'react',
-      dynamicImport: {
-        // webpackChunkName: true,
-        loadingComponent: './components/Loading/index.jsx',
-        // level: ,
-      },
-      // dll: {
-      //   include: [],
-      //   exclude: [],
-      // },
-      // pwa: {
-      //   manifestOptions: {
-      //     srcPath: 'src/manifest.json',
-      //   },
-      //   workboxPluginMode: 'GenerateSW', // 'InjectManifest'
-      //   workboxOptions: {
-      //     swSrc: 'src/manifest.json',
-      //     swDest: 'service-worker.js',
-      //     importWorkboxFrom: 'local',
-      //   }
-      // },
-      hd: true,
-      fastClick: false,
-      title: {
-        defaultTitle: 'ANTD MOBILE',
-        // format: '{parent}{separator}{current}',
-        // separator: ' - ',
-        useLocale: true,
-      },
-      // chunks: ['umi'],
-      // scripts: [{}, ''],
-      // headScripts: [{}, ''],
-      // metas: [{}],
-      // links: [{}],
-    },
-  ],
-];
+// https://umijs.org/zh-CN/plugins/api
+const plugins = {
+  antd: {
+    dark: false,
+  },
+  dva: {
+    immer: true,
+    hmr: true,
+  },
+  locale: {
+    // default: 'zh-CN',
+    baseNavigator: true,
+    antd: true,
+    title: true,
+    baseSeparator: '-',
+  },
+};
 
 const define = {
   'process.env.NODE_ENV': process.env.NODE_ENV,
@@ -79,56 +39,62 @@ const define = {
 
 // https://umijs.org/config/
 export default {
-  plugins,
-  // routes: [],
-  // disableRedirectHoist: false,
-  history: 'browser', // browser、hash、memory
-  outputPath: './dist',
+  // alias: {},
+  // analyze: {},
+  // autoprefixer: { flexbox: 'no-2009' },
   // base: '/',
-  // publicPath: '/',
-  runtimePublicPath: false,
-  // cssPublicPath: '/',
-  mountElementId: 'root',
-  minimizer: 'terserjs', // uglifyjs, terserjs
-  hash: true,
-  targets: { android: 4, ios: 6 },
-  // context: {},
+  chainWebpack,
+  // cssLoader: {},
+  // cssnano: {},
+  // copy: [],
+  define,
+  // devServer: {},
+  // devtool: {},
+  dynamicImport: {
+    // webpackChunkName: true,
+    loading: '@/components/Loading',
+    // level: ,
+  },
   // exportStatic: { htmlSuffix: false, dynamicRoot: false },
-  // singular: false,
+  // externals: {},
+  extraBabelPlugins: ['lodash'],
+  // extraBabelPresets: [],
+  // extraPostCSSPlugins: [],
+  // favicon: '/assets/favicon.ico',
+  // forkTSCheker: {},
+  hash: true,
+  // headScripts: [{}, ''],
+  history: { type: 'browser' }, // browser、hash、memory
+  ignoreMomentLocale: true,
+  // inlineLimit: 10000,
+  // lessLoader: {},
+  // links: [{}],
+  // manifest: {
+  //   fileName: 'manifest.json',
+  //   publicPath: ,
+  //   basePath: '/',
+  // },
+  // metas: [{}],
   // mock: {
   //   exclude: [],
   // },
-  // block: {
-  //   defaultGitUrl: 'https://github.com/ant-design/pro-blocks',
-  //   npmClient: 'cnpm',
-  // },
-  ssr: false,
-
-  chainWebpack,
-  theme: 'config/theme.js',
-  treeShaking: true,
-  define,
-  // externals: {},
-  // alias: {},
-  // devServer: {},
-  // devtool: {},
-  // disableCSSModules: false,
-  // disableCSSSourceMap: false,
-  // extraBabelPresets: [],
-  extraBabelPlugins: ['lodash'],
-  // extraBabelIncludes: [],
-  // extraPostCSSPlugins: [],
-  // cssModulesExcludes: [],
-  // generateCssModulesTypings: true,
-  // copy: [],
+  // mountElementId: 'root',
+  // outputPath: 'dist',
+  // plugins: [],
+  // presets: [],
   // proxy: {},
-  // sass: {},
-  // 'manifest': {
-  //   "basePath": '/',
-  // },
-  ignoreMomentLocale: true,
-  // lessLoaderOptions: {},
-  // cssLoaderOptions: {},
-  // autoprefixer: { browsers: DEFAULT_BROWSERS, flexbox: true },
-  // uglifyJSOptions: {},
+  // publicPath: '/',
+  // routes: [],
+  // runtimePublicPath: false,
+  // scripts: [{}, ''],
+  // singular: false,
+  // ssr: false,
+  // styleLoader: {},
+  // styles: [],
+  targets: { android: 4, ios: 6 },
+  // terserOptions: {},
+  theme: Theme,
+  title: 'ANTD Mobile',
+
+  ...plugins,
 };
