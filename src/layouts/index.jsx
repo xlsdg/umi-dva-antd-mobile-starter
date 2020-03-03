@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 // import PropTypes from 'prop-types';
 import { withRouter } from 'umi';
@@ -24,7 +25,7 @@ class BasicLayout extends React.PureComponent {
     const { location } = that.props;
     // const {  } = that.state;
 
-    if (location !== prevProps.location) {
+    if (!_.isEqual(location, prevProps.location)) {
       window.scrollTo(0, 0);
     }
   }
