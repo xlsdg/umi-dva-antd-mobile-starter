@@ -51,9 +51,7 @@ export default {
   // devServer: {},
   // devtool: {},
   dynamicImport: {
-    // webpackChunkName: true,
     loading: '@/components/Loading',
-    // level: ,
   },
   // exportStatic: { htmlSuffix: false, dynamicRoot: false },
   // externals: {},
