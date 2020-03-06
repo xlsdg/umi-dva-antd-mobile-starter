@@ -92,6 +92,8 @@ export function request(method, url, data = {}, options = {}) {
       requestOptions.prefix = _.trimEnd(options.baseURL, '/');
     } else if (!ends && !starts) {
       requestOptions.prefix = `${options.baseURL}/`;
+    } else {
+      requestOptions.prefix = options.baseURL;
     }
   }
 
