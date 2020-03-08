@@ -18,15 +18,17 @@ const plugins = {
     dark: false,
   },
   dva: {
+    // skipModelValidate: false,
+    // extraModels: [],
     immer: true,
     hmr: true,
   },
   locale: {
+    baseSeparator: '-',
     // default: 'zh-CN',
-    baseNavigator: true,
     antd: true,
     title: true,
-    baseSeparator: '-',
+    baseNavigator: true,
   },
 };
 
@@ -44,6 +46,7 @@ export default {
   // autoprefixer: { flexbox: 'no-2009' },
   // base: '/',
   chainWebpack,
+  // chunks: ['umi'],
   // cssLoader: {},
   // cssnano: {},
   // copy: [],
