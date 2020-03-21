@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import { TYPE_SET_STATE } from '@/redux/types/index';
+import { TYPE_SET_STATE, TYPE_ENTER_PAGE, TYPE_CHANGE_PAGE, TYPE_LEAVE_PAGE } from '@/redux/types/index';
 
 import { hasArray, hasString, hasPlainObject, getValue, flattenObject } from '@/utils/helper';
 
@@ -78,4 +78,7 @@ export function generateActionsByTypes(types) {
 
 export default {
   [TYPE_SET_STATE]: SetStateAction,
+  [TYPE_ENTER_PAGE]: generateAction(TYPE_ENTER_PAGE),
+  [TYPE_CHANGE_PAGE]: generateAction(TYPE_CHANGE_PAGE),
+  [TYPE_LEAVE_PAGE]: generateAction(TYPE_LEAVE_PAGE),
 };

@@ -1,4 +1,6 @@
 import _ from 'lodash';
+// import Axios from 'axios';
+// import QueryString from 'qs';
 import { message } from 'antd';
 import { history } from 'umi';
 import UmiRequest from 'umi-request';
@@ -43,6 +45,111 @@ function reduceCallback(accumulator, item) {
   return hasPlainObject(result) ? mergeObject(accumulator, result) : accumulator;
 }
 
+// use axios
+// eslint-disable-next-line max-params
+// export function request(method, url, data = {}, options = {}) {
+//   const requestOptions = {
+//     // url: ,
+//     method: method === 'form' ? 'post' : method,
+//     // baseURL: ,
+//     // transformRequest: [],
+//     // transformResponse: [],
+//     // headers: {},
+//     // params: {},
+//     // paramsSerializer: params => Qs.stringify(params, { arrayFormat: 'brackets' }),
+//     // data: {},
+//     // timeout: 1000,
+//     // withCredentials: false,
+//     // adapter: config => {},
+//     // auth: {
+//     //   username: '',
+//     //   password: '',
+//     // },
+//     responseType: 'json',
+//     responseEncoding: 'utf8',
+//     // xsrfCookieName: 'XSRF-TOKEN',
+//     // xsrfHeaderName: 'X-XSRF-TOKEN',
+//     // onUploadProgress: progressEvent => {},
+//     // onDownloadProgress: progressEvent => {},
+//     // maxContentLength: 2000,
+//     // maxBodyLength: 2000,
+//     // validateStatus: status => {},
+//     // maxRedirects: 5,
+//     // socketPath: null,
+//     // httpAgent: new http.Agent({ keepAlive: true }),
+//     // httpsAgent: new https.Agent({ keepAlive: true }),
+//     // proxy: {
+//     //   host: '127.0.0.1',
+//     //   port: 9000,
+//     //   auth: {
+//     //     username: '',
+//     //     password: '',
+//     //   },
+//     // },
+//     // cancelToken:  new CancelToken(cancel => {}),
+//     // decompress: true,
+//   };
+
+//   if (hasArray(options.header)) {
+//     requestOptions.headers = _.reduce(options.header, reduceCallback, {});
+//   }
+
+//   let payload = data;
+//   if (hasArray(options.data)) {
+//     payload = _.reduce(options.data, reduceCallback, _.cloneDeep(data));
+//   }
+
+//   if (_.isFunction(options.interceptor)) {
+//     [requestOptions.headers, payload] = options.interceptor(requestOptions.headers, payload);
+//   }
+
+//   if (_.includes(['get', 'delete'], method)) {
+//     requestOptions.params = payload;
+//   } else if (method === 'form') {
+//     // requestOptions.headers['content-type'] = 'application/x-www-form-urlencoded';
+//     requestOptions.data = QueryString.stringify(payload);
+//   } else {
+//     requestOptions.data = payload;
+//   }
+
+//   if (hasString(options.baseURL)) {
+//     const ends = _.endsWith(options.baseURL, '/');
+//     const starts = _.startsWith(url, '/');
+
+//     if (ends && starts) {
+//       requestOptions.baseURL = _.trimEnd(options.baseURL, '/');
+//     } else if (!ends && !starts) {
+//       requestOptions.baseURL = `${options.baseURL}/`;
+//     } else {
+//       requestOptions.baseURL = options.baseURL;
+//     }
+//   }
+
+//   if (_.isFunction(options.cancelToken)) {
+//     requestOptions.cancelToken = new Axios.CancelToken(options.cancelToken);
+//   }
+
+//   return Axios(url, requestOptions)
+//     .then(response => {
+//       let resp = response;
+//       if (hasArray(options.response)) {
+//         resp = _.reduce(options.response, reduceCallback, response);
+//       }
+
+//       return resp.data;
+//     })
+//     .catch(error => {
+//       let err = error;
+//       // if (UmiRequest.isCancel(error)) {}
+//       if (hasArray(options.error)) {
+//         err = _.reduce(options.error, reduceCallback, error);
+//       }
+
+//       return Promise.reject(err);
+//     });
+// }
+
+// use umi-request
 // eslint-disable-next-line max-params
 export function request(method, url, data = {}, options = {}) {
   const requestOptions = {
@@ -76,6 +183,10 @@ export function request(method, url, data = {}, options = {}) {
   let payload = data;
   if (hasArray(options.data)) {
     payload = _.reduce(options.data, reduceCallback, _.cloneDeep(data));
+  }
+
+  if (_.isFunction(options.interceptor)) {
+    [requestOptions.headers, payload] = options.interceptor(requestOptions.headers, payload);
   }
 
   if (_.includes(['get', 'delete'], method)) {
@@ -130,6 +241,7 @@ function mergeOptions(methodOptions, urlOptions, dataOptions) {
     response: 'array',
     error: 'array',
     cancelToken: 'func',
+    interceptor: 'func',
   };
 
   return _.reduce(

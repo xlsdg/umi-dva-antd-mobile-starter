@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'dva';
+import { connect } from 'umi';
 // import { formatMessage } from 'umi';
 
 import { NS_HOME } from '@/redux/namespaces/index';
