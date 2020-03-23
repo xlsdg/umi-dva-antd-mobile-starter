@@ -162,10 +162,10 @@ export function request(method, url, data = {}, options = {}) {
     // prefix: '',
     // suffix: '',
     // credentials: 'same-origin',
-    useCache: !!options.useCache,
+    // useCache: false,
     // validateCache: (url, options) => {},
     // ttl: 60000,
-    maxCache: 0,
+    // maxCache: 0,
     requestType: method === 'form' ? 'form' : 'json',
     parseResponse: true,
     charset: 'utf8',
@@ -234,7 +234,6 @@ export function request(method, url, data = {}, options = {}) {
 
 function mergeOptions(methodOptions, urlOptions, dataOptions) {
   const keys = {
-    useCache: 'bool',
     baseURL: 'string',
     header: 'array',
     data: 'array',
