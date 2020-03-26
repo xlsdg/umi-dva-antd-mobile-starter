@@ -18,7 +18,7 @@
     "@commitlint/config-conventional": "^8.3.4",
     "@umijs/plugin-antd": "^0.4.0",
     "@umijs/plugin-dva": "^0.6.4",
-    "@umijs/plugin-locale": "^0.4.2",
+    "@umijs/plugin-locale": "^0.4.3",
     "babel-eslint": "^10.1.0",
     "babel-plugin-lodash": "^3.3.4",
     "cross-env": "^7.0.2",
@@ -29,7 +29,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.1",
     "husky": "^4.2.3",
-    "lint-staged": "^10.0.8",
+    "lint-staged": "^10.0.9",
     "lodash-webpack-plugin": "^0.11.5",
     "prettier": "^2.0.2",
     "stylelint": "^13.2.1",
@@ -37,7 +37,7 @@
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-order": "^4.0.0",
     "stylelint-prettier": "^1.1.2",
-    "umi": "^3.0.13",
+    "umi": "^3.0.14",
     "vconsole": "^3.3.4"
   },
   "engines": {

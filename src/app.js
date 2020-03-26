@@ -1,6 +1,7 @@
 import _ from 'lodash';
 // import { message } from 'antd';
 // import { formatMessage } from 'umi';
+// import { createLogger } from 'redux-logger';
 
 export const dva = {
   config: {
@@ -12,7 +13,7 @@ export const dva = {
         error.preventDefault();
       }
     },
-    // onAction: [],
+    // onAction: [createLogger({})],
     // onStateChange: ,
     // onReducer: ,
     // onEffect: ,
