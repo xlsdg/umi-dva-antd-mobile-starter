@@ -29,7 +29,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^3.0.0",
     "husky": "^4.2.3",
-    "lint-staged": "^10.0.10",
+    "lint-staged": "^10.1.1",
     "lodash-webpack-plugin": "^0.11.5",
     "prettier": "^2.0.2",
     "stylelint": "^13.2.1",
@@ -37,7 +37,7 @@
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-order": "^4.0.0",
     "stylelint-prettier": "^1.1.2",
-    "umi": "^3.0.14",
+    "umi": "^3.0.16",
     "vconsole": "^3.3.4"
   },
   "engines": {
