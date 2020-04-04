@@ -143,11 +143,11 @@ export function mergeDeep(obj, init = {}) {
 }
 
 export function mergeObject(object, ...sources) {
-  let res = object;
-  _.each(sources, src => {
-    res = mergeDeep(src, res);
-  });
-  return res;
+  if (!_.isPlainObject(object)) {
+    return;
+  }
+
+  return _.reduce(sources, (res, src) => (hasPlainObject(src) ? mergeDeep(src, res) : res), object);
 }
 
 // export function mergeObject(...args) {
@@ -227,12 +227,11 @@ export function upperObjectKey(obj) {
 export function generateSubscriptionByRoutes(routes) {
   const pathName = _.keys(routes);
   // const asyncCall = fn => (...args) => window.setTimeout(() => fn(...args));
+  if (!hasPlainObject(routes)) {
+    return;
+  }
 
   return ({ dispatch, history }, onError) => {
-    if (!hasPlainObject(routes)) {
-      return;
-    }
-
     let prevPathName = null;
     // eslint-disable-next-line complexity
     return history.listen((location, action) => {
@@ -324,15 +323,17 @@ export function getRandomLengthString(len = 10) {
 }
 
 export function generateDataSetByData(data) {
+  if (!hasPlainObject(data)) {
+    return {};
+  }
+
   return _.reduce(
     data,
-    (r, v, k) => {
-      const key = _.toString(k);
-      const value = JSON.stringify(v);
-      if (hasString(key) && hasString(value)) {
-        r[`data-${key}`] = value;
+    (res, value, key) => {
+      if (hasString(key) && hasValue(value)) {
+        res[`data-${key}`] = JSON.stringify(value);
       }
-      return r;
+      return res;
     },
     {}
   );

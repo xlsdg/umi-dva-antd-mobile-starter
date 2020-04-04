@@ -21,6 +21,7 @@ export const dva = {
     // extraReducers: {  },
     // extraEnhancers: ,
     // models: [],
+    // namespacePrefixWarning: ,
   },
   // plugins: [],
 };

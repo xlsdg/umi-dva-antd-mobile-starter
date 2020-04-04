@@ -1,8 +1,8 @@
 import _ from 'lodash';
 
-import { TYPE_SET_STATE, TYPE_ENTER_PAGE, TYPE_CHANGE_PAGE, TYPE_LEAVE_PAGE } from '@/redux/types/index';
+import TYPES from '@/redux/types/index';
 
-import { hasArray, hasString, hasPlainObject, getValue, flattenObject } from '@/utils/helper';
+import { hasArray, hasString, hasPlainObject, getValue, flattenObject, mergeObject } from '@/utils/helper';
 
 // eslint-disable-next-line max-params
 export function actionCreator(error, namespace, type, payload = {}, meta = {}) {
@@ -14,11 +14,11 @@ export function actionCreator(error, namespace, type, payload = {}, meta = {}) {
   };
 }
 
-export function getStartAction(namespace, type) {
+export function getActionStart(namespace, type) {
   return hasString(namespace) ? `${namespace}/${type}/@@start` : `${type}/@@start`;
 }
 
-export function getEndAction(namespace, type) {
+export function getActionEnd(namespace, type) {
   return hasString(namespace) ? `${namespace}/${type}/@@end` : `${type}/@@end`;
 }
 
@@ -26,10 +26,18 @@ export function generateAction(type) {
   return ({ error, meta, ...others } = {}, namespace) => actionCreator(error, namespace, type, others, meta);
 }
 
-const SetStateAction = generateAction(TYPE_SET_STATE);
 export function generateSetStateAction(path, namespace) {
-  return state => SetStateAction(hasArray(path) || hasString(path) ? _.set({}, path, state) : state, namespace);
+  const setStateAction = generateAction(TYPES.TYPE_SET_STATE);
+  return state => setStateAction(hasArray(path) || hasString(path) ? _.set({}, path, state) : state, namespace);
 }
+
+export const setStateReducer = {
+  [TYPES.TYPE_SET_STATE](state, action) {
+    const { payload } = action;
+    mergeObject(state, payload); // 开启 immer 之后需要这样设置
+    // return mergeObject({}, state, payload); // 未开启 immer 的方式
+  },
+};
 
 export function generatePutStateAction(state, depth, namespace) {
   if (!hasPlainObject(state) || depth === 0) {
@@ -76,9 +84,11 @@ export function generateActionsByTypes(types) {
   );
 }
 
-export default {
-  [TYPE_SET_STATE]: SetStateAction,
-  [TYPE_ENTER_PAGE]: generateAction(TYPE_ENTER_PAGE),
-  [TYPE_CHANGE_PAGE]: generateAction(TYPE_CHANGE_PAGE),
-  [TYPE_LEAVE_PAGE]: generateAction(TYPE_LEAVE_PAGE),
-};
+// export default {
+//   [TYPE_SET_STATE]: setStateAction,
+//   [TYPE_ENTER_PAGE]: generateAction(TYPE_ENTER_PAGE),
+//   [TYPE_CHANGE_PAGE]: generateAction(TYPE_CHANGE_PAGE),
+//   [TYPE_LEAVE_PAGE]: generateAction(TYPE_LEAVE_PAGE),
+// };
+
+export default generateActionsByTypes(TYPES);
