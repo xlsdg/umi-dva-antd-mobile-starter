@@ -2,26 +2,18 @@ import _ from 'lodash';
 import { pathToRegexp } from 'path-to-regexp';
 import FastDeepEqual from 'fast-deep-equal/es6/react';
 
-const TypeOf = type => object => Object.prototype.toString.call(object) === `[object ${type}]`;
+// const TypeOf = type => object => Object.prototype.toString.call(object) === `[object ${type}]`;
 
 // const isString = TypeOf('String');
 // const isObject = TypeOf('Object');
 // const isFunction = TypeOf('Function');
-export const isBlob = TypeOf('Blob');
+// export const isBlob = TypeOf('Blob');
 
 export const isPrimitive = val => val !== Object(val);
 
 export const isEqual = FastDeepEqual;
 
 export const noop = () => {};
-
-// export function px2Rem(px) {
-//   return px / 100;
-// }
-
-// export function px2RemStr(px) {
-//   return `${px2Rem(px)}rem`;
-// }
 
 export function hasString(value) {
   return _.isString(value) && !_.isEmpty(value);
@@ -84,21 +76,6 @@ export function ifCall(value, condition, trueResult, falseResult) {
   }
 }
 
-// export function forBreak(collection, iteratee, defaultValue) {
-//   if (!hasArray(collection)) {
-//     return collection;
-//   }
-
-//   for (let i = 0; i < collection.length; i++) {
-//     const ret = iteratee(collection[i], i, collection);
-//     if (ret) {
-//       return collection[i];
-//     }
-//   }
-
-//   return defaultValue;
-// }
-
 export function getValue(object, path, ...defaultValues) {
   const value = _.get(object, path);
   if (hasValue(value)) {
@@ -106,15 +83,6 @@ export function getValue(object, path, ...defaultValues) {
   }
 
   return _.find(defaultValues, hasValue);
-  // return forBreak(defaultValues, hasValue, value);
-
-  // for (let i = 0; i < defaultValues.length; i++) {
-  //   if (hasValue(defaultValues[i])) {
-  //     return defaultValues[i];
-  //   }
-  // }
-
-  // return value;
 }
 
 export function mergeDeep(obj, init = {}) {
@@ -150,52 +118,6 @@ export function mergeObject(object, ...sources) {
   return _.reduce(sources, (res, src) => (hasPlainObject(src) ? mergeDeep(src, res) : res), object);
 }
 
-// export function mergeObject(...args) {
-//   return _.mergeWith(...args, customizerMerge);
-// }
-
-// export function assignObject(...args) {
-//   return _.assignWith(...args, customizerAssign);
-// }
-
-export function formatQuery(query) {
-  if (!_.isString(query) || query.length < 2) {
-    return '';
-  }
-
-  if (!_.startsWith(query, '?')) {
-    return `?${query}`;
-  }
-
-  return query;
-}
-
-// export function customizerMerge(objValue, srcValue, key, object, source, stack) {
-//   // console.log('customizerMerge:', objValue, srcValue, key, object, source, stack);
-//   // 修复 undefined 不能覆盖有值(BUG)
-//   if (_.isUndefined(srcValue)) {
-//     return srcValue;
-//   }
-
-//   // 修复空数组不能覆盖有数组
-//   if ((_.isArray(srcValue) || _.isArrayBuffer(srcValue) || _.isArrayLikeObject(srcValue)) && _.isEmpty(srcValue)) {
-//     return srcValue;
-//   }
-
-//   // 修复空对象不能覆盖有对象
-//   if (_.isPlainObject(srcValue) && _.isEmpty(srcValue)) {
-//     return srcValue;
-//   }
-// }
-
-// export function customizerAssign(objValue, srcValue, key, object, source, stack) {
-//   // console.log('customizerAssign:', objValue, srcValue, key, object, source, stack);
-//   // 修复有对象完全覆盖有对象
-//   if (hasPlainObject(objValue) && hasPlainObject(srcValue)) {
-//     return srcValue;
-//   }
-// }
-
 export function flattenObject(obj, depth, prefix = '') {
   const limit = _.isInteger(depth);
   return _.reduce(
@@ -208,17 +130,6 @@ export function flattenObject(obj, depth, prefix = '') {
         acc[pre + k] = obj[k];
       }
       return acc;
-    },
-    {}
-  );
-}
-
-export function upperObjectKey(obj) {
-  return _.reduce(
-    obj,
-    (e, v, k) => {
-      e[_.toUpper(k)] = hasPlainObject(v) ? upperObjectKey(v) : v;
-      return e;
     },
     {}
   );
@@ -302,53 +213,6 @@ export function generateSubscriptionByRoutes(routes) {
   };
 }
 
-export function getRandomString(prefix = 'random') {
-  return `${prefix}_${_.now()}_${Math.random()
-    .toString(36)
-    .substring(2)}`;
-}
-
-export function getRandomLengthString(len = 10) {
-  let str = Math.random()
-    .toString(36)
-    .substring(2);
-
-  while (str.length < len) {
-    str += Math.random()
-      .toString(36)
-      .substring(2);
-  }
-
-  return str.substring(0, len);
-}
-
-export function generateDataSetByData(data) {
-  if (!hasPlainObject(data)) {
-    return {};
-  }
-
-  return _.reduce(
-    data,
-    (res, value, key) => {
-      if (hasString(key) && hasValue(value)) {
-        res[`data-${key}`] = JSON.stringify(value);
-      }
-      return res;
-    },
-    {}
-  );
-}
-
-export function getDataSetByEvent(event) {
-  return _.mapValues(_.toPlainObject(getValue(event, 'target.dataset', {})), v => {
-    try {
-      return JSON.parse(v);
-    } catch (error) {
-      return v;
-    }
-  });
-}
-
 export function asyncCall(fn, timeout = 0) {
   return (...args) =>
     new Promise((resolve, reject) =>
@@ -360,58 +224,4 @@ export function asyncCall(fn, timeout = 0) {
         }
       }, timeout)
     );
-}
-
-export function getSearchStringByUri(uri) {
-  const search = uri.split('?');
-  return search.length < 2 ? '' : search[1];
-}
-
-export function getQueryObjectByUri(uri) {
-  const params = getSearchStringByUri(uri || window.location.search).split('&');
-  const result = {};
-
-  for (let i = 0, len = params.length; i < len; i++) {
-    const param = params[i].split('=');
-    const paramLen = param.length;
-
-    if (param[0].length < 1) {
-      continue;
-    }
-
-    if (paramLen === 1) {
-      result[param[0]] = undefined;
-    } else if (paramLen > 1) {
-      const value = window.decodeURIComponent(param[1]);
-      result[param[0]] = value === 'undefined' ? undefined : value;
-    }
-  }
-
-  return result;
-}
-
-export function setQueryObjectToUri(obj) {
-  if (!hasPlainObject(obj)) {
-    return '';
-  }
-
-  const arrUri = [];
-
-  _.forOwn(obj, (value, key) => {
-    if (_.isFunction(value)) {
-      return;
-    }
-
-    arrUri.push(
-      `${window.encodeURIComponent(_.toString(key))}=${window.encodeURIComponent(
-        _.isObjectLike(value) ? JSON.stringify(value) : value
-      )}`
-    );
-  });
-
-  return _.join(arrUri, '&');
-}
-
-export function getCharLength(str = '') {
-  return `${str}`.replace(/[^\x00-\xff]/g, 'xx').length;
 }

@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'umi';
 // import { formatMessage } from 'umi';
 
-import { NS_HOME } from '@/redux/namespaces/index';
-import { generateSetStateAction } from '@/redux/actions/index';
+import NAMESPACES from '@/redux/namespaces';
+import { generateSetStateAction } from '@/redux/actions';
 
 import styles from './index.less';
 
@@ -18,14 +18,18 @@ Content.propTypes = {};
 Content.defaultProps = {};
 
 function mapStateToProps(state, ownProps) {
+  const namespace = NAMESPACES.HOME;
+
   return {
     loading: state.loading,
-    state: state[NS_HOME],
+    state: state[namespace],
   };
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
-  const action = generateSetStateAction('', NS_HOME);
+  const namespace = NAMESPACES.HOME;
+  const action = generateSetStateAction('', namespace);
+
   return {
     // dispatch, // 默认不打开，在这个函数里处理 dispatch
     setState: state => dispatch(action(state)),

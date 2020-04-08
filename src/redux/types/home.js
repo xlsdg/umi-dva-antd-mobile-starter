@@ -1,6 +1,4 @@
-import { generateTypesByNames } from '@/redux/types/index';
+import { generateTypesByNames } from '@/redux/types';
 
 const NAMES = ['getData'];
 export default generateTypesByNames(NAMES);
-
-// export const TYPE_GET_DATA = 'getData';

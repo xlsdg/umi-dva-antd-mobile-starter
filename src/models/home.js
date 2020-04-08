@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
-import { NS_HOME } from '@/redux/namespaces/index';
-import PageActions, { generatePutStateAction, setStateReducer } from '@/redux/actions/index';
+import NAMESPACES from '@/redux/namespaces';
+import PageActions, { generatePutStateAction, setStateReducer } from '@/redux/actions';
 
 import HomeActions from '@/redux/actions/home';
 import HomeApi from '@/services/home';
@@ -13,7 +13,7 @@ const InitialState = {
 };
 
 const StateAt = generatePutStateAction(InitialState, 0);
-// const StateFrom = generateSelectStateFn(InitialState, 0, NS_HOME);
+// const StateFrom = generateSelectStateFn(InitialState, 0, NAMESPACES.HOME);
 
 const Routes = {
   '/': {
@@ -32,34 +32,37 @@ const Routes = {
   },
 };
 
+// action: error, type, payload, meta
+// effects: take, put, all, race, call, apply, cps, fork, spawn, join, cancel, select,
+//          actionChannel, cancelled, flush, getContext, setContext, takeEvery, takeLatest, throttle
 export default {
-  namespace: NS_HOME,
+  namespace: NAMESPACES.HOME,
   state: _.cloneDeep(InitialState),
   subscriptions: {
     setup: generateSubscriptionByRoutes(Routes),
   },
   effects: {
     *enterPage(action, effects) {
-      // const { payload } = action; // error, type, payload, meta
-      const { put } = effects; // take, put, all, race, call, apply, cps, fork, spawn, join, cancel, select, actionChannel, cancelled, flush, getContext, setContext, takeEvery, takeLatest, throttle
+      // const { payload } = action;
+      const { put } = effects;
 
       yield put(HomeActions.getData());
     },
     *changePage(action, effects) {
-      // const { payload } = action; // error, type, payload, meta
-      const { put } = effects; // take, put, all, race, call, apply, cps, fork, spawn, join, cancel, select, actionChannel, cancelled, flush, getContext, setContext, takeEvery, takeLatest, throttle
+      // const { payload } = action;
+      const { put } = effects;
 
       yield put(HomeActions.getData());
     },
     *leavePage(action, effects) {
-      // const { payload } = action; // error, type, payload, meta
-      const { put } = effects; // take, put, all, race, call, apply, cps, fork, spawn, join, cancel, select, actionChannel, cancelled, flush, getContext, setContext, takeEvery, takeLatest, throttle
+      // const { payload } = action;
+      const { put } = effects;
 
       yield put(StateAt(_.cloneDeep(InitialState)));
     },
     *getData(action, effects) {
-      // const { payload } = action; // error, type, payload, meta
-      const { put, call } = effects; // take, put, all, race, call, apply, cps, fork, spawn, join, cancel, select, actionChannel, cancelled, flush, getContext, setContext, takeEvery, takeLatest, throttle
+      // const { payload } = action;
+      const { put, call } = effects;
 
       // console.log(payload);
       const resp = yield call(HomeApi.getData, {});

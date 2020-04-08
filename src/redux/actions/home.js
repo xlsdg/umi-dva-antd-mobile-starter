@@ -1,6 +1,4 @@
-import { generateActionsByTypes } from '@/redux/actions/index';
+import { generateActionsByTypes } from '@/redux/actions';
 import TYPES from '@/redux/types/home';
 
-export default {
-  ...generateActionsByTypes(TYPES),
-};
+export default generateActionsByTypes(TYPES);
