@@ -98,4 +98,28 @@ export function generateActionsByTypes(types, options = {}) {
   );
 }
 
+export function generateDispatchesByTypes(types, actions) {
+  if (!hasPlainObject(types) || !hasPlainObject(actions)) {
+    return () => {};
+  }
+
+  return (dispatch, namespace, filter) => {
+    if (!_.isFunction(dispatch)) {
+      return {};
+    }
+
+    return _.reduce(
+      types,
+      (dispatches, type) => {
+        if (!hasArray(filter) || (hasArray(filter) && _.includes(filter, type))) {
+          dispatches[type] = payload => dispatch(actions[type](payload, namespace));
+        }
+
+        return dispatches;
+      },
+      {}
+    );
+  };
+}
+
 export default generateActionsByTypes(TYPES);

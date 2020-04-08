@@ -1,4 +1,6 @@
-import { generateActionsByTypes } from '@/redux/actions';
+import { generateActionsByTypes, generateDispatchesByTypes } from '@/redux/actions';
 import TYPES from '@/redux/types/home';
 
-export default generateActionsByTypes(TYPES);
+export const actions = generateActionsByTypes(TYPES);
+export const dispatches = generateDispatchesByTypes(TYPES, actions);
+export default actions;
