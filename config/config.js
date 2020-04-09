@@ -16,6 +16,7 @@ const chainWebpack = config => {
 const plugins = {
   antd: {
     dark: false,
+    compact: false,
   },
   dva: {
     // skipModelValidate: false,
@@ -48,6 +49,7 @@ export default {
   chainWebpack,
   // chunks: ['umi'],
   // cssLoader: {},
+  // cssModulesTypescriptLoader: ,
   // cssnano: {},
   // copy: [],
   define,
@@ -80,8 +82,12 @@ export default {
   //   exclude: [],
   // },
   // mountElementId: 'root',
+  // mpa: {},
+  // nodeModulesTransform: { type: 'all' },
   // outputPath: 'dist',
   // plugins: [],
+  // polyfill: { imports: [] },
+  // postcssLoader: {},
   // presets: [],
   // proxy: {},
   // publicPath: '/',

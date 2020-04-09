@@ -1,4 +1,5 @@
 import _ from 'lodash';
+// import createCachedSelector from 're-reselect';
 
 import TYPES from '@/redux/types';
 
@@ -98,12 +99,12 @@ export function generateActionsByTypes(types, options = {}) {
   );
 }
 
-export function generateDispatchesByTypes(types, actions) {
+export function generateDispatchesByTypes(types, actions, namespace) {
   if (!hasPlainObject(types) || !hasPlainObject(actions)) {
     return () => {};
   }
 
-  return (dispatch, namespace, filter) => {
+  return (dispatch, filter) => {
     if (!_.isFunction(dispatch)) {
       return {};
     }
@@ -120,6 +121,12 @@ export function generateDispatchesByTypes(types, actions) {
       {}
     );
   };
+}
+
+export function createStateSelector(path, namespace) {
+  const setStateAction = generateSetStateAction(path, namespace);
+  const newPath = hasString(path) ? `${namespace}.${path}` : hasArray(path) ? [namespace, ...path] : namespace;
+  return [state => _.get(state, newPath), dispatch => state => dispatch(setStateAction(state))];
 }
 
 export default generateActionsByTypes(TYPES);
