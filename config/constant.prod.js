@@ -1,5 +1,5 @@
 export const CDN_HOST = '';
-export const BASE_PATH = '/';
+export const BASE_PATH = '/umi-dva-antd-mobile-starter/';
 
 export default {
   BASE_HOST: 'http://127.0.0.1:8080',
