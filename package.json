@@ -12,6 +12,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "reselect": "^4.0.0",
+    "umi": "^3.1.1",
     "umi-request": "^1.2.19"
   },
   "devDependencies": {
@@ -38,7 +39,6 @@
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-order": "^4.0.0",
     "stylelint-prettier": "^1.1.2",
-    "umi": "^3.1.1",
     "vconsole": "^3.3.4"
   },
   "engines": {

@@ -1,3 +1,4 @@
+import { defineConfig } from 'umi';
 import LodashWebpackPlugin from 'lodash-webpack-plugin';
 
 import Constant from './constant';
@@ -41,7 +42,7 @@ const define = {
 };
 
 // https://umijs.org/config/
-export default {
+export default defineConfig({
   // alias: {},
   // analyze: {},
   // autoprefixer: { flexbox: 'no-2009' },
@@ -104,4 +105,4 @@ export default {
   title: 'ANTD Mobile',
 
   ...plugins,
-};
+});
