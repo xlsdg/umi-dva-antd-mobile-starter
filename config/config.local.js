@@ -11,11 +11,11 @@ const define = {
 // https://umijs.org/config/
 export default defineConfig({
   base: BASE_PATH,
-  // cssLoader: {
-  //   modules: {
-  //     localIdentName: '[local]--[hash:base64:5]',
-  //   },
-  // },
+  cssLoader: {
+    modules: {
+      localIdentName: '[local]--[hash:base64:5]',
+    },
+  },
   define,
   manifest: {
     basePath: PUBLIC_PATH,
