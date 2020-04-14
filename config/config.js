@@ -57,7 +57,7 @@ export default defineConfig({
   // devServer: {},
   // devtool: {},
   dynamicImport: {
-    loading: '@/components/Loading',
+    loading: '@/components/PageLoading',
   },
   // exportStatic: { htmlSuffix: false, dynamicRoot: false },
   // externals: {},

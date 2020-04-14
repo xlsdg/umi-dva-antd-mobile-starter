@@ -3,19 +3,19 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 // import ClassNames from 'classnames';
 // import { Link, history, Redirect } from 'umi';
-// import {  } from 'antd-mobile';
+// import { Layout } from 'antd';
 // import { formatMessage } from 'umi';
 
-import styles from './index.less';
+// import styles from './index.less';
 
-const HomeLayout = React.memo(props => {
+const DefaultLayout = React.memo(props => {
   const { children } = props;
 
-  return <div className={styles.container}>{children}</div>;
+  return children;
 });
 
-HomeLayout.propTypes = {};
+DefaultLayout.propTypes = {};
 
-HomeLayout.defaultProps = {};
+DefaultLayout.defaultProps = {};
 
-export default HomeLayout;
+export default DefaultLayout;
