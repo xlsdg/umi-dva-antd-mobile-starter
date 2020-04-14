@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([[1],{GLXO:function(n,e,t){"use strict";t.r(e);var a=t("q1tI"),o=t.n(a),c=t("fROf"),i=t.n(c),r=o.a.memo((function(n){return o.a.createElement("div",{className:i.a.container},"404")}));r.defaultProps={},r.title="page.404.title",e["default"]=r},fROf:function(n,e,t){n.exports={container:"_2FSFcznq"}}}]);
