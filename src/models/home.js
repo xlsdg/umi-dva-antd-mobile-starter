@@ -4,7 +4,7 @@ import NAMESPACES from '@/redux/namespaces';
 import PageActions, { generatePutStateAction, setStateReducer } from '@/redux/actions';
 
 import HomeActions from '@/redux/actions/home';
-import HomeApi from '@/services/home';
+import * as HomeTransforms from '@/transforms/home';
 
 import { generateSubscriptionByRoutes, hasArray } from '@/utils/helper';
 
@@ -61,11 +61,11 @@ export default {
       yield put(StateAt(_.cloneDeep(InitialState)));
     },
     *getData(action, effects) {
-      // const { payload } = action;
+      const { payload } = action;
       const { put, call } = effects;
 
       // console.log(payload);
-      const resp = yield call(HomeApi.getData, {});
+      const resp = yield call(HomeTransforms.getData, payload);
       // console.log(resp);
       if (hasArray(resp.banner)) {
         yield put(StateAt({ banner: resp.banner }));

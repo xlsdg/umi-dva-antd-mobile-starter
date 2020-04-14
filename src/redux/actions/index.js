@@ -104,7 +104,7 @@ export function generateDispatchesByTypes(types, actions, namespace) {
     return () => {};
   }
 
-  return (dispatch, filter) => {
+  return (dispatch, filter, extra = {}) => {
     if (!_.isFunction(dispatch)) {
       return {};
     }
@@ -113,7 +113,11 @@ export function generateDispatchesByTypes(types, actions, namespace) {
       types,
       (dispatches, type) => {
         if (!hasArray(filter) || (hasArray(filter) && _.includes(filter, type))) {
-          dispatches[type] = payload => dispatch(actions[type](payload, namespace));
+          dispatches[type] = payload => {
+            const extraPayload = getValue(extra, type);
+            const newPayload = hasPlainObject(extraPayload) ? { ...extraPayload, ...payload } : payload;
+            return dispatch(actions[type](newPayload, namespace));
+          };
         }
 
         return dispatches;

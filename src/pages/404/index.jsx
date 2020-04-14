@@ -1,7 +1,7 @@
 import React from 'react';
 // import { formatMessage } from 'umi';
 
-import styles from './404.less';
+import styles from './index.less';
 
 const Page = React.memo(props => {
   // const {  } = props;
