@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'umi';
 // import { formatMessage } from 'umi';
 
-import { createHomeStateSelector } from '@/redux/actions/home';
+import { createStateSelector } from '@/redux/actions/home';
 
 import styles from './index.less';
 
@@ -16,7 +16,7 @@ Content.propTypes = {};
 
 Content.defaultProps = {};
 
-const [stateSelector, setStateSelector] = createHomeStateSelector('');
+const [stateSelector, setStateSelector] = createStateSelector('');
 
 function mapStateToProps(state, ownProps) {
   return {

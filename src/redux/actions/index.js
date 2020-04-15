@@ -127,10 +127,25 @@ export function generateDispatchesByTypes(types, actions, namespace) {
   };
 }
 
-export function createStateSelector(path, namespace) {
+export function generateStateSelector(path, namespace) {
   const setStateAction = generateSetStateAction(path, namespace);
   const newPath = hasString(path) ? `${namespace}.${path}` : hasArray(path) ? [namespace, ...path] : namespace;
   return [state => _.get(state, newPath), dispatch => state => dispatch(setStateAction(state))];
+}
+
+export function generateLoadingSelector(types, namespace) {
+  if (!hasPlainObject(types)) {
+    return {};
+  }
+
+  return _.reduce(
+    types,
+    (acc, type) => {
+      acc[type] = loading => getValue(loading, `effects['${namespace}/${type}']`, false);
+      return acc;
+    },
+    {}
+  );
 }
 
 export default generateActionsByTypes(TYPES);
