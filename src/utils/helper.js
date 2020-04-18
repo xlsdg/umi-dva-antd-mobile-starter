@@ -20,7 +20,7 @@ export function hasString(value) {
 }
 
 export function hasNumber(value) {
-  return _.isNumber(value) && _.isFinite(value);
+  return _.isNumber(value) && _.isFinite(value) && !_.isNaN(value);
 }
 
 export function hasDate(value) {
