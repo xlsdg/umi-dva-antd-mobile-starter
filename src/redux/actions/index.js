@@ -153,8 +153,13 @@ export function generateLoadingSelectorByFilter(loadingSelector = {}, filter = [
     return loadingSelector;
   }
 
+  const result = {};
   const newLoadingSelector = _.pick(loadingSelector, filter);
-  return loading => _.mapValues(newLoadingSelector, selector => selector(loading));
+  return loading =>
+    mergeObject(
+      result,
+      _.mapValues(newLoadingSelector, selector => selector(loading))
+    );
 }
 
 export default generateActionsByTypes(TYPES);
