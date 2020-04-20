@@ -7,7 +7,7 @@ export const dva = {
   config: {
     // history: ,
     // initialState: {},
-    onError: (error, dispatch) => {
+    onError: (error, dispatch, extension) => {
       // console.dir(error);
       if (error && _.isFunction(error.preventDefault)) {
         error.preventDefault();
