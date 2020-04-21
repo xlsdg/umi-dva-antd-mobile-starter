@@ -1,7 +1,7 @@
 import _ from 'lodash';
 // import Axios from 'axios';
 // import QueryString from 'qs';
-import { message } from 'antd';
+import { Toast } from 'antd-mobile';
 import { history } from 'umi';
 import UmiRequest from 'umi-request';
 
@@ -24,17 +24,17 @@ export const addAuthHandlerToError = error => {
   }
 };
 export const addMsgHandlerToError = error =>
-  error instanceof ResponseError && hasStringThen(getValue(error, 'response.data.msg'), message.error);
+  error instanceof ResponseError && hasStringThen(getValue(error, 'response.data.msg'), Toast.fail);
 export const addActionHandlerToError = handler => error => handler(error);
 export const addResponseHandlerToError = error =>
-  !(error instanceof ResponseError) && hasStringThen(getValue(error, 'response.statusText'), message.error);
+  !(error instanceof ResponseError) && hasStringThen(getValue(error, 'response.statusText'), Toast.fail);
 export const addRequestHandlerToError = error =>
-  !(error instanceof ResponseError) && hasStringThen(getValue(error, 'request'), message.error);
+  !(error instanceof ResponseError) && hasStringThen(getValue(error, 'request'), Toast.fail);
 export const addMessageHandlerToError = error =>
   !(error instanceof ResponseError) &&
   !getValue(error, 'response') &&
   !getValue(error, 'request') &&
-  hasStringThen(getValue(error, 'message'), message.error);
+  hasStringThen(getValue(error, 'message'), Toast.fail);
 
 function reduceCallback(accumulator, item) {
   const result = _.isFunction(item) ? item(accumulator) : item;

@@ -6,7 +6,7 @@ import { ActivityIndicator } from 'antd-mobile';
 
 import styles from './index.less';
 
-const Loading = React.memo(props => {
+function Loading(props) {
   const { className, children, ...others } = props;
 
   const activityIndicatorProps = _.pick(others, ['animating', 'size', 'toast', 'text']);
@@ -17,10 +17,10 @@ const Loading = React.memo(props => {
       </ActivityIndicator>
     </div>
   );
-});
+}
 
 Loading.propTypes = {};
 
 Loading.defaultProps = {};
 
-export default Loading;
+export default React.memo(Loading);

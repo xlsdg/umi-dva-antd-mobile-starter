@@ -3,12 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import ClassNames from 'classnames';
 import { Redirect } from 'umi';
-// import {  } from 'antd';
-// import { formatMessage } from 'umi-plugin-react/locale';
+// import {  } from 'antd-mobile';
 
 import PageLoading from '@/components/PageLoading';
 
-const AuthPage = React.memo(props => {
+function AuthPage(props) {
   const { children, authority, errTo, authTo } = props;
 
   const [auth, setAuth] = React.useState(undefined);
@@ -46,7 +45,7 @@ const AuthPage = React.memo(props => {
   ) : (
     children
   );
-});
+}
 
 AuthPage.propTypes = {
   authority: PropTypes.func.isRequired,
@@ -56,4 +55,4 @@ AuthPage.propTypes = {
 
 AuthPage.defaultProps = {};
 
-export default AuthPage;
+export default React.memo(AuthPage);

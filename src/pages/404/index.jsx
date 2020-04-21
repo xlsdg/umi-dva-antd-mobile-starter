@@ -3,14 +3,16 @@ import React from 'react';
 
 import styles from './index.less';
 
-const Page = React.memo(props => {
+function Body(props) {
   // const {  } = props;
   return <div className={styles.container}>404</div>;
-});
+}
 
-Page.propTypes = {};
+Body.propTypes = {};
 
-Page.defaultProps = {};
+Body.defaultProps = {};
+
+const Page = React.memo(Body);
 
 Page.title = 'page.404.title';
 

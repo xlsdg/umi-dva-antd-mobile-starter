@@ -3,12 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import ClassNames from 'classnames';
 import { Redirect } from 'umi';
-// import {  } from 'antd';
-// import { formatMessage } from 'umi-plugin-react/locale';
+// import {  } from 'antd-mobile';
 
 import PageLoading from '@/components/PageLoading';
 
-const PrivatePage = React.memo(props => {
+function PrivatePage(props) {
   const { children, authority, errTo, authTo } = props;
 
   const [auth, setAuth] = React.useState(undefined);
@@ -46,7 +45,7 @@ const PrivatePage = React.memo(props => {
   ) : (
     <Redirect to={authTo} />
   );
-});
+}
 
 PrivatePage.propTypes = {
   authority: PropTypes.func.isRequired,
@@ -56,4 +55,4 @@ PrivatePage.propTypes = {
 
 PrivatePage.defaultProps = {};
 
-export default PrivatePage;
+export default React.memo(PrivatePage);

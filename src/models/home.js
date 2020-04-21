@@ -13,7 +13,7 @@ const InitialState = {
 };
 
 const StateAt = generatePutStateAction(InitialState, 0);
-// const StateFrom = generateSelectStateFn(InitialState, 0, NAMESPACES.HOME);
+// const StateFrom = generateEffectStateSelector(InitialState, 0, NAMESPACES.HOME);
 
 const Routes = {
   '/': {
