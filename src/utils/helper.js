@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import React from 'react';
 import { pathToRegexp } from 'path-to-regexp';
 import FastDeepEqual from 'fast-deep-equal/es6/react';
 
@@ -224,4 +225,8 @@ export function asyncCall(fn, timeout = 0) {
         }
       }, timeout)
     );
+}
+
+export function memoComponent(fnComponent, propsAreEqual = FastDeepEqual) {
+  return React.memo(fnComponent, propsAreEqual);
 }
