@@ -174,4 +174,21 @@ export function generateUseDispatchSelector(...args) {
   };
 }
 
-export default generateActionsByTypes(TYPES);
+const PageActions = generateActionsByTypes(TYPES);
+
+export const PageEvents = {
+  onEnter: ({ dispatch, ...others }) => {
+    // console.log('Enter /');
+    return dispatch(PageActions.enterPage(others));
+  },
+  onChange: ({ dispatch, ...others }) => {
+    // console.log('Change /');
+    return dispatch(PageActions.changePage(others));
+  },
+  onLeave: ({ dispatch, ...others }) => {
+    // console.log('Leave /');
+    return dispatch(PageActions.leavePage(others));
+  },
+};
+
+export default PageActions;

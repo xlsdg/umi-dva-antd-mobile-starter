@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import NAMESPACES from '@/redux/namespaces';
-import PageActions, { generatePutStateAction, setStateReducer } from '@/redux/actions';
+import { PageEvents, generatePutStateAction, setStateReducer } from '@/redux/actions';
 
 import HomeActions from '@/redux/actions/home';
 import * as HomeTransforms from '@/transforms/home';
@@ -16,20 +16,7 @@ const StateAt = generatePutStateAction(InitialState, 0);
 // const StateFrom = generateEffectStateSelector(InitialState, 0, NAMESPACES.HOME);
 
 const Routes = {
-  '/': {
-    onEnter: ({ dispatch, ...others }) => {
-      // console.log('Enter /');
-      return dispatch(PageActions.enterPage(others));
-    },
-    onChange: ({ dispatch, ...others }) => {
-      // console.log('Change /');
-      return dispatch(PageActions.changePage(others));
-    },
-    onLeave: ({ dispatch, ...others }) => {
-      // console.log('Leave /');
-      return dispatch(PageActions.leavePage(others));
-    },
-  },
+  '/': PageEvents,
 };
 
 // action: error, type, payload, meta
