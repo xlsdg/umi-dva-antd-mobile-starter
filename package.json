@@ -8,11 +8,11 @@
     "moment": "^2.25.3",
     "path-to-regexp": "^6.1.0",
     "prop-types": "^15.7.2",
-    "re-reselect": "^3.4.0",
+    "re-reselect": "^4.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "reselect": "^4.0.0",
-    "umi": "^3.1.2",
+    "umi": "^3.1.4",
     "umi-request": "^1.2.19"
   },
   "devDependencies": {
@@ -24,7 +24,7 @@
     "babel-eslint": "^10.1.0",
     "babel-plugin-lodash": "^3.3.4",
     "cross-env": "^7.0.2",
-    "eslint": "^6.8.0",
+    "eslint": "^7.0.0",
     "eslint-config-alloy": "^3.7.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
