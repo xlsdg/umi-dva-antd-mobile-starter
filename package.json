@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "antd-mobile": "^2.3.2",
+    "antd-mobile": "^2.3.3",
     "classnames": "^2.2.6",
     "dva": "next",
     "fast-deep-equal": "^3.1.1",
@@ -12,14 +12,14 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "reselect": "^4.0.0",
-    "umi": "^3.1.4",
+    "umi": "^3.2.1",
     "umi-request": "^1.2.19"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@umijs/plugin-antd": "^0.5.1",
-    "@umijs/plugin-dva": "^0.6.5",
+    "@umijs/plugin-dva": "^0.7.1",
     "@umijs/plugin-locale": "^0.6.1",
     "babel-eslint": "^10.1.0",
     "babel-plugin-lodash": "^3.3.4",
@@ -31,10 +31,10 @@
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4.0.2",
     "husky": "^4.2.5",
-    "lint-staged": "^10.2.2",
+    "lint-staged": "^10.2.4",
     "lodash-webpack-plugin": "^0.11.5",
     "prettier": "^2.0.5",
-    "stylelint": "^13.4.0",
+    "stylelint": "^13.5.0",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-order": "^4.0.0",
