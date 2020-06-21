@@ -12,8 +12,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "reselect": "^4.0.0",
-    "umi": "^3.2.3",
-    "umi-request": "^1.3.3"
+    "umi": "^3.2.4",
+    "umi-request": "^1.3.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
@@ -31,10 +31,10 @@
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4.0.4",
     "husky": "^4.2.5",
-    "lint-staged": "^10.2.10",
+    "lint-staged": "^10.2.11",
     "lodash-webpack-plugin": "^0.11.5",
     "prettier": "^2.0.5",
-    "stylelint": "^13.6.0",
+    "stylelint": "^13.6.1",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-order": "^4.1.0",
