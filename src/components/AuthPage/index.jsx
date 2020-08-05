@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 // import ClassNames from 'classnames';
 import { Redirect } from 'umi';
 // import {  } from 'antd-mobile';
@@ -48,9 +48,9 @@ function AuthPage(props) {
 }
 
 AuthPage.propTypes = {
-  authority: PropTypes.func.isRequired,
-  errTo: PropTypes.string.isRequired,
-  authTo: PropTypes.string.isRequired,
+  // authority: PropTypes.func.isRequired,
+  // errTo: PropTypes.string.isRequired,
+  // authTo: PropTypes.string.isRequired,
 };
 
 AuthPage.defaultProps = {};

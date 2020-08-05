@@ -4,6 +4,7 @@ import {
   generateUseStateSelector,
   generateDispatchSelector,
   generateUseDispatchSelector,
+  generateConnectSelector,
 } from '@/redux/actions';
 import TYPES from '@/redux/types/home';
 import NAMESPACES from '@/redux/namespaces';
@@ -15,5 +16,7 @@ export const createUseStateSelector = path => generateUseStateSelector(path, NAM
 
 export const createDispatchSelector = filter => generateDispatchSelector(filter, TYPES, actions, NAMESPACES.HOME);
 export const createUseDispatchSelector = filter => generateUseDispatchSelector(filter, TYPES, actions, NAMESPACES.HOME);
+
+export const createConnectSelector = generateConnectSelector(createStateSelector, createDispatchSelector);
 
 export default actions;

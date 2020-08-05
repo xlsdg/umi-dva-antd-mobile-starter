@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
+import { connect } from 'dva';
 import { useSelector, useDispatch } from 'umi';
 // import createCachedSelector from 're-reselect';
 
@@ -171,6 +172,78 @@ export function generateUseDispatchSelector(...args) {
     const newDispatch = React.useMemo(() => dispatchSelector(dispatch), [dispatch]);
 
     return [newDispatch, loading];
+  };
+}
+
+export function generateConnectSelector(createStateSelector, createDispatchSelector) {
+  // eslint-disable-next-line max-params
+  return (statePath, dispatchFilter, addonFilter, component) => {
+    const [stateSelector, setStateSelector] =
+      _.isUndefined(statePath) || statePath === '' || hasString(statePath) // 单个
+        ? createStateSelector(statePath)
+        : hasArray(statePath) // 多个
+        ? createStateSelector()
+        : [];
+    const [dispatchSelector, loadingSelector] = hasArray(dispatchFilter) ? createDispatchSelector(dispatchFilter) : [];
+
+    const mapStateToProps = (state, ownProps) => {
+      const result = {};
+
+      if (_.isFunction(stateSelector)) {
+        const newState = stateSelector(state);
+        if (hasArray(statePath)) {
+          result.state = _.pick(newState, statePath);
+        } else {
+          result.state = newState;
+        }
+      }
+
+      if (_.isFunction(loadingSelector)) {
+        result.loading = loadingSelector(state.loading);
+      }
+
+      return result;
+    };
+
+    const mapDispatchToProps = (dispatch, ownProps) => {
+      const result = {};
+
+      if (_.isFunction(setStateSelector)) {
+        if (hasArray(statePath)) {
+          // 多个则不提供 setState
+        } else {
+          result.setState = setStateSelector(dispatch);
+        }
+      }
+
+      if (_.isFunction(dispatchSelector)) {
+        result.dispatchAction = dispatchSelector(dispatch);
+      }
+
+      return result;
+    };
+
+    const mergeProps = (stateProps, dispatchProps, ownProps) => {
+      let addonProps = {};
+      if (_.isFunction(addonFilter)) {
+        const newProps = addonFilter(stateProps, dispatchProps, ownProps);
+        if (hasPlainObject(newProps)) {
+          addonProps = newProps;
+        }
+      } else if (hasString(addonFilter)) {
+        addonProps[addonFilter] = ownProps[addonFilter];
+      } else if (hasArray(addonFilter)) {
+        addonProps = _.pick(ownProps, addonFilter);
+      }
+
+      return {
+        ...stateProps,
+        ...dispatchProps,
+        ...addonProps,
+      };
+    };
+
+    return connect(mapStateToProps, mapDispatchToProps, mergeProps)(component);
   };
 }
 

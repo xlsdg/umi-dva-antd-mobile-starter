@@ -3,8 +3,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import { useLocation } from 'umi';
 
-import DefaultLayout from './default';
-import UserLayout from './user';
+import UserLayout from '@/components/Layout/User';
 
 import { useDeepCompareEffect } from '@/utils/hook';
 
@@ -20,11 +19,11 @@ function BasicLayout(props) {
     }
   }, [location]);
 
-  let layout = <DefaultLayout>{children}</DefaultLayout>;
+  let layout = children;
 
   const { pathname } = location;
-  const pathString = pathname !== '/' ? _.trimEnd(pathname, '/') : pathname;
-  if (_.startsWith(pathString, '/user/')) {
+  const path = pathname !== '/' ? _.trimEnd(pathname, '/') : pathname;
+  if (_.startsWith(path, '/user/')) {
     layout = <UserLayout>{children}</UserLayout>;
   }
 
