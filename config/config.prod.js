@@ -5,6 +5,7 @@ import Constant, { CDN_HOST, BASE_PATH } from './constant.prod';
 const PUBLIC_PATH = `${CDN_HOST}${BASE_PATH}`;
 
 const define = {
+  'process.env.UMI_ENV': 'prod',
   ...Constant,
 };
 

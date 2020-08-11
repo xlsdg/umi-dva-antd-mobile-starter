@@ -36,8 +36,6 @@ const plugins = {
 
 const define = {
   'process.env.NODE_ENV': process.env.NODE_ENV,
-  'process.env.UMI_ENV': process.env.UMI_ENV,
-
   ...Constant,
 };
 
