@@ -1,12 +1,22 @@
 import _ from 'lodash';
 import React from 'react';
-import { connect } from 'dva';
-import { useSelector, useDispatch } from 'umi';
+// import { connect, useSelector, useDispatch } from 'dva';
+import { connect, useSelector, useDispatch } from 'umi';
 // import createCachedSelector from 're-reselect';
 
 import TYPES from '@/redux/types';
 
-import { hasArray, hasString, hasPlainObject, getValue, flattenObject, mergeObject, isEqual } from '@/utils/helper';
+import {
+  hasArray,
+  hasString,
+  hasPlainObject,
+  hasFunction,
+  getValue,
+  flattenObject,
+  mergeObject,
+  isEqual,
+  noop,
+} from '@/utils/helper';
 
 export function actionCreator(props) {
   const { error, namespace, type, payload = {}, meta = {} } = props;
@@ -105,7 +115,7 @@ export function generateActionsByTypes(types, options = {}) {
 export function generateStateSelector(path = '', namespace) {
   const setStateAction = generateSetStateAction(path, namespace);
   const newPath = hasString(path) ? `${namespace}.${path}` : hasArray(path) ? [namespace, ...path] : namespace;
-  return [state => _.get(state, newPath), dispatch => state => dispatch(setStateAction(state))];
+  return [state => _.get(state, newPath), _.memoize(dispatch => state => dispatch(setStateAction(state)))];
 }
 
 export function generateUseStateSelector(...args) {
@@ -122,7 +132,6 @@ export function generateUseStateSelector(...args) {
 
 // eslint-disable-next-line max-params
 export function generateDispatchSelector(filter = [], types, actions, namespace) {
-  const noop = () => {};
   if (!hasPlainObject(types) || !hasPlainObject(actions) || !hasString(namespace)) {
     return [noop, noop];
   }
@@ -143,13 +152,13 @@ export function generateDispatchSelector(filter = [], types, actions, namespace)
     }
   );
 
-  const dispatchSelector = dispatch => {
+  const dispatchSelector = _.memoize(dispatch => {
     if (!hasPlainObject(selector.dispatch)) {
       return {};
     }
 
     return _.mapValues(selector.dispatch, selector => selector(dispatch));
-  };
+  });
 
   const loadingSelector = loading => {
     if (!hasPlainObject(selector.loading)) {
@@ -189,7 +198,7 @@ export function generateConnectSelector(createStateSelector, createDispatchSelec
     const mapStateToProps = (state, ownProps) => {
       const result = {};
 
-      if (_.isFunction(stateSelector)) {
+      if (hasFunction(stateSelector)) {
         const newState = stateSelector(state);
         if (hasArray(statePath)) {
           result.state = _.pick(newState, statePath);
@@ -198,7 +207,7 @@ export function generateConnectSelector(createStateSelector, createDispatchSelec
         }
       }
 
-      if (_.isFunction(loadingSelector)) {
+      if (hasFunction(loadingSelector)) {
         result.loading = loadingSelector(state.loading);
       }
 
@@ -208,7 +217,7 @@ export function generateConnectSelector(createStateSelector, createDispatchSelec
     const mapDispatchToProps = (dispatch, ownProps) => {
       const result = {};
 
-      if (_.isFunction(setStateSelector)) {
+      if (hasFunction(setStateSelector)) {
         if (hasArray(statePath)) {
           // 多个则不提供 setState
         } else {
@@ -216,7 +225,7 @@ export function generateConnectSelector(createStateSelector, createDispatchSelec
         }
       }
 
-      if (_.isFunction(dispatchSelector)) {
+      if (hasFunction(dispatchSelector)) {
         result.dispatchAction = dispatchSelector(dispatch);
       }
 
@@ -225,7 +234,7 @@ export function generateConnectSelector(createStateSelector, createDispatchSelec
 
     const mergeProps = (stateProps, dispatchProps, ownProps) => {
       let addonProps = {};
-      if (_.isFunction(addonFilter)) {
+      if (hasFunction(addonFilter)) {
         const newProps = addonFilter(stateProps, dispatchProps, ownProps);
         if (hasPlainObject(newProps)) {
           addonProps = newProps;

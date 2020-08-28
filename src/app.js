@@ -1,7 +1,9 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 // import { Toast } from 'antd-mobile';
 // import { formatMessage } from 'umi';
 // import { createLogger } from 'redux-logger';
+
+import { hasFunction } from '@/utils/helper';
 
 export const dva = {
   config: {
@@ -9,7 +11,7 @@ export const dva = {
     // initialState: {},
     onError: (error, dispatch, extension) => {
       // console.dir(error);
-      if (error && _.isFunction(error.preventDefault)) {
+      if (error && hasFunction(error.preventDefault)) {
         error.preventDefault();
       }
     },

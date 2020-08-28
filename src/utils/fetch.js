@@ -5,21 +5,20 @@ import { Toast } from 'antd-mobile';
 import { history } from 'umi';
 import UmiRequest from 'umi-request';
 
-import { ResponseError } from './error';
-import { hasString, hasPlainObject, hasArray, hasValue, hasStringThen, getValue, mergeObject } from './helper';
+import { ResponseError } from '@/utils/error';
+import { hasString, hasPlainObject, hasArray, hasFunction, hasStringThen, getValue, mergeObject } from '@/utils/helper';
 
-export const addAuthorizationToHeader = () => ({ Authorization: 'xxxx' });
+export const addAuthorizationToHeader = async () => ({ Authorization: 'xxxx' });
 
-export const addTimestampToData = () => ({ _t: _.now() });
+export const addTimestampToData = async () => ({ _t: _.now() });
 
 export const addAuthCheckerToResponse = response =>
-  getValue(response, 'data.code') === 100 ? new ResponseError({ message: 'No Auth!', response }) : response;
-export const addCodeCheckerToResponse = response =>
+  getValue(response, 'data.code') === 1000 ? new ResponseError({ message: 'No Auth!', response }) : response;
+export const addMsgCodeCheckerToResponse = response =>
   getValue(response, 'data.code') !== 0 ? new ResponseError({ message: 'Bad Code!', response }) : response;
 
-export const addAuthHandlerToError = error => {
+export const addAuthHandlerToError = async error => {
   if (error instanceof ResponseError && getValue(error, 'response.data.code') === 100) {
-    // removeUserAuthData();
     history.push('/user/login');
   }
 };
@@ -36,18 +35,24 @@ export const addMessageHandlerToError = error =>
   !getValue(error, 'request') &&
   hasStringThen(getValue(error, 'message'), Toast.fail);
 
-function reduceCallback(accumulator, item) {
-  const result = _.isFunction(item) ? item(accumulator) : item;
-  if (result instanceof Error) {
-    throw result;
-  }
+async function asyncReduce(collection, initialValue) {
+  const iteratee = async (prevResult, item) => {
+    const nextResult = await prevResult;
 
-  return hasPlainObject(result) ? mergeObject(accumulator, result) : accumulator;
+    const result = hasFunction(item) ? await item(nextResult) : item;
+    if (result instanceof Error) {
+      throw result;
+    }
+
+    return hasPlainObject(result) ? mergeObject(nextResult, result) : nextResult;
+  };
+
+  return await _.reduce(collection, iteratee, Promise.resolve(initialValue));
 }
 
 // use axios
 // eslint-disable-next-line max-params
-// export function request(method, url, data = {}, options = {}) {
+// export async function request(method, url, data = {}, options = {}) {
 //   const requestOptions = {
 //     // url: ,
 //     method: method === 'form' ? 'post' : method,
@@ -91,16 +96,16 @@ function reduceCallback(accumulator, item) {
 //   };
 
 //   if (hasArray(options.header)) {
-//     requestOptions.headers = _.reduce(options.header, reduceCallback, {});
+//     requestOptions.headers = await asyncReduce(options.header, {});
 //   }
 
-//   let payload = data;
+//   let payload = _.cloneDeep(data);
 //   if (hasArray(options.data)) {
-//     payload = _.reduce(options.data, reduceCallback, _.cloneDeep(data));
+//     payload = await asyncReduce(options.data, payload);
 //   }
 
-//   if (_.isFunction(options.interceptor)) {
-//     [requestOptions.headers, payload] = options.interceptor(requestOptions.headers, payload);
+//   if (hasFunction(options.interceptor)) {
+//     [requestOptions.headers, payload] = await options.interceptor(requestOptions.headers, payload);
 //   }
 
 //   if (_.includes(['get', 'delete'], method)) {
@@ -113,45 +118,35 @@ function reduceCallback(accumulator, item) {
 //   }
 
 //   if (hasString(options.baseURL)) {
-//     const ends = _.endsWith(options.baseURL, '/');
-//     const starts = _.startsWith(url, '/');
+//     const prefix = _.startsWith(url, '/');
+//     const suffix = _.endsWith(options.baseURL, '/');
 
-//     if (ends && starts) {
+//     if (prefix && suffix) {
 //       requestOptions.baseURL = _.trimEnd(options.baseURL, '/');
-//     } else if (!ends && !starts) {
+//     } else if (!prefix && !suffix) {
 //       requestOptions.baseURL = `${options.baseURL}/`;
 //     } else {
 //       requestOptions.baseURL = options.baseURL;
 //     }
 //   }
 
-//   if (_.isFunction(options.cancelToken)) {
+//   if (hasFunction(options.cancelToken)) {
 //     requestOptions.cancelToken = new Axios.CancelToken(options.cancelToken);
 //   }
 
-//   return Axios(url, requestOptions)
-//     .then(response => {
-//       let resp = response;
-//       if (hasArray(options.response)) {
-//         resp = _.reduce(options.response, reduceCallback, response);
-//       }
-
-//       return resp.data;
-//     })
-//     .catch(error => {
-//       let err = error;
-//       // if (UmiRequest.isCancel(error)) {}
-//       if (hasArray(options.error)) {
-//         err = _.reduce(options.error, reduceCallback, error);
-//       }
-
-//       return Promise.reject(err);
-//     });
+//   try {
+//     const response = await Axios(url, requestOptions);
+//     const newResponse = hasArray(options.response) ? await asyncReduce(options.response, response) : response;
+//     return newResponse.data;
+//   } catch (error) {
+//     // if (Axios.isCancel(error)) {}
+//     throw hasArray(options.error) ? await asyncReduce(options.error, error) : error;
+//   }
 // }
 
 // use umi-request
 // eslint-disable-next-line max-params
-export function request(method, url, data = {}, options = {}) {
+export async function request(method, url, data = {}, options = {}) {
   const requestOptions = {
     method: method === 'form' ? 'post' : method,
     // params: ,
@@ -177,16 +172,16 @@ export function request(method, url, data = {}, options = {}) {
   };
 
   if (hasArray(options.header)) {
-    requestOptions.headers = _.reduce(options.header, reduceCallback, {});
+    requestOptions.headers = await asyncReduce(options.header, {});
   }
 
-  let payload = data;
+  let payload = _.cloneDeep(data);
   if (hasArray(options.data)) {
-    payload = _.reduce(options.data, reduceCallback, _.cloneDeep(data));
+    payload = await asyncReduce(options.data, payload);
   }
 
-  if (_.isFunction(options.interceptor)) {
-    [requestOptions.headers, payload] = options.interceptor(requestOptions.headers, payload);
+  if (hasFunction(options.interceptor)) {
+    [requestOptions.headers, payload] = await options.interceptor(requestOptions.headers, payload);
   }
 
   if (_.includes(['get', 'delete'], method)) {
@@ -196,61 +191,73 @@ export function request(method, url, data = {}, options = {}) {
   }
 
   if (hasString(options.baseURL)) {
-    const ends = _.endsWith(options.baseURL, '/');
-    const starts = _.startsWith(url, '/');
+    const prefix = _.startsWith(url, '/');
+    const suffix = _.endsWith(options.baseURL, '/');
 
-    if (ends && starts) {
+    if (prefix && suffix) {
       requestOptions.prefix = _.trimEnd(options.baseURL, '/');
-    } else if (!ends && !starts) {
+    } else if (!prefix && !suffix) {
       requestOptions.prefix = `${options.baseURL}/`;
     } else {
       requestOptions.prefix = options.baseURL;
     }
   }
 
-  if (_.isFunction(options.cancelToken)) {
+  if (hasFunction(options.cancelToken)) {
     requestOptions.cancelToken = new UmiRequest.CancelToken(options.cancelToken);
   }
 
-  return UmiRequest(url, requestOptions)
-    .then(response => {
-      let resp = response;
-      if (hasArray(options.response)) {
-        resp = _.reduce(options.response, reduceCallback, response);
-      }
-
-      return resp.data;
-    })
-    .catch(error => {
-      let err = error;
-      // if (UmiRequest.isCancel(error)) {}
-      if (hasArray(options.error)) {
-        err = _.reduce(options.error, reduceCallback, error);
-      }
-
-      return Promise.reject(err);
-    });
+  try {
+    const response = await UmiRequest(url, requestOptions);
+    const newResponse = hasArray(options.response) ? await asyncReduce(options.response, response) : response;
+    return newResponse.data;
+  } catch (error) {
+    // if (UmiRequest.isCancel(error)) {}
+    throw hasArray(options.error) ? await asyncReduce(options.error, error) : error;
+  }
 }
 
 function mergeOptions(methodOptions, urlOptions, dataOptions) {
-  const keys = {
+  const types = {
     baseURL: 'string',
-    header: 'array',
-    data: 'array',
-    response: 'array',
-    error: 'array',
+    header: ['func', 'object'],
+    data: ['func', 'object'],
+    response: ['func', 'object'],
+    error: ['func', 'object'],
     cancelToken: 'func',
     interceptor: 'func',
   };
 
+  const filters = {
+    string: hasString,
+    func: hasFunction,
+    object: hasPlainObject,
+  };
+
   return _.reduce(
-    keys,
-    (res, type, name) => {
-      const temp = _.filter(_.concat(dataOptions[name], urlOptions[name], methodOptions[name]), hasValue);
-      if (hasArray(temp)) {
-        res[name] = type === 'array' ? temp : temp[0];
+    types,
+    (opts, type, name) => {
+      const all = _.concat(methodOptions[name], urlOptions[name], dataOptions[name]);
+
+      let result = [];
+      if (hasString(type)) {
+        // 单个
+        result = _.filter(all, filters[type]);
+      } else if (hasArray(type)) {
+        // 多个
+        result = _.filter(all, item => {
+          for (let i = 0; i < type.length; i++) {
+            if (filters[type[i]](item)) {
+              return true;
+            }
+          }
+        });
       }
-      return res;
+
+      if (hasArray(result)) {
+        opts[name] = hasArray(type) ? result : result[0];
+      }
+      return opts;
     },
     {}
   );
@@ -259,22 +266,25 @@ function mergeOptions(methodOptions, urlOptions, dataOptions) {
 export const fetch = (method, methodOptions = {}) => (url, urlOptions = {}) => (data, dataOptions = {}) =>
   request(method, url, data, mergeOptions(methodOptions, urlOptions, dataOptions));
 
-export const internalAuthMethodOptions = {
-  baseURL: AUTH_HOST,
-  header: [addAuthorizationToHeader],
-  response: [addAuthCheckerToResponse, addCodeCheckerToResponse],
-  error: [addAuthHandlerToError, addMsgHandlerToError],
-};
-
 export const internalApiMethodOptions = {
   baseURL: BASE_HOST,
   header: [],
-  response: [addCodeCheckerToResponse],
+  response: [addMsgCodeCheckerToResponse],
   error: [addMsgHandlerToError],
+};
+
+export const internalAuthMethodOptions = {
+  baseURL: AUTH_HOST,
+  header: [...internalApiMethodOptions.header, addAuthorizationToHeader],
+  response: [...internalApiMethodOptions.response, addAuthCheckerToResponse],
+  error: [...internalApiMethodOptions.error, addAuthHandlerToError],
 };
 
 export const externalMethodOptions = {
   // baseURL: '',
+  // header: [],
+  // response: [],
+  // error: [],
 };
 
 export default {

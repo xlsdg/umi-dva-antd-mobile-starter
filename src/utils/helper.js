@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import React from 'react';
-import { pathToRegexp } from 'path-to-regexp';
-import FastDeepEqual from 'fast-deep-equal/es6/react';
+import PathToRegexp from 'path-to-regexp';
+// import FastDeepEqual from 'fast-deep-equal/es6/react';
+import { dequal as FastDeepEqual } from 'dequal';
 
 // const TypeOf = type => object => Object.prototype.toString.call(object) === `[object ${type}]`;
 
@@ -40,6 +41,14 @@ export function hasValue(value) {
   return !_.isNil(value);
 }
 
+export function hasBoolean(value) {
+  return _.isBoolean(value);
+}
+
+export function hasFunction(value) {
+  return _.isFunction(value);
+}
+
 export function hasStringThen(value, trueResult, falseResult) {
   return ifCall(value, hasString, trueResult, falseResult);
 }
@@ -57,22 +66,22 @@ export function hasValueThen(value, trueResult, falseResult) {
 }
 
 export function hasFunctionCall(value, ...args) {
-  return _.isFunction(value) ? value(...args) : value;
+  return hasFunction(value) ? value(...args) : value;
 }
 
 // eslint-disable-next-line max-params
 export function ifCall(value, condition, trueResult, falseResult) {
-  if (_.isFunction(condition)) {
+  if (hasFunction(condition)) {
     if (condition(value)) {
-      return _.isFunction(trueResult) ? trueResult(value) : trueResult;
+      return hasFunction(trueResult) ? trueResult(value) : trueResult;
     } else {
-      return _.isFunction(falseResult) ? falseResult(value) : falseResult;
+      return hasFunction(falseResult) ? falseResult(value) : falseResult;
     }
   } else {
     if (condition) {
-      return _.isFunction(trueResult) ? trueResult(value) : trueResult;
+      return hasFunction(trueResult) ? trueResult(value) : trueResult;
     } else {
-      return _.isFunction(falseResult) ? falseResult(value) : falseResult;
+      return hasFunction(falseResult) ? falseResult(value) : falseResult;
     }
   }
 }
@@ -158,7 +167,7 @@ export function generateSubscriptionByRoutes(routes) {
         const path = pathName[i];
         // console.log('\t@path:', path, '\t@prevPathName:', prevPathName, '\t@currPathName:', currPathName);
 
-        const regexp = pathToRegexp(path);
+        const regexp = PathToRegexp(path);
         const prevMatch = regexp.exec(prevPathName);
         const currMatch = regexp.exec(currPathName);
         // console.log('\t@prevMatch:', prevMatch, '\t@currMatch:', currMatch);
@@ -166,7 +175,7 @@ export function generateSubscriptionByRoutes(routes) {
         // 原地变参
         if (hasArray(prevMatch) && hasArray(currMatch) && prevMatch.length === currMatch.length) {
           // const prev = routes[prevMatch.length > 1 ? path : prevPathName];
-          // if (hasPlainObject(prev) && _.isFunction(prev.onLeave)) {
+          // if (hasPlainObject(prev) && hasFunction(prev.onLeave)) {
           //   asyncCall(prev.onLeave)(_.assign({}, event, { match: prevMatch }), prev.context)
           //     .then(() => {
           //       prev.context = {};
@@ -175,7 +184,7 @@ export function generateSubscriptionByRoutes(routes) {
           // }
 
           const curr = routes[currMatch.length > 1 ? path : currPathName];
-          if (hasPlainObject(curr) && _.isFunction(curr.onChange)) {
+          if (hasPlainObject(curr) && hasFunction(curr.onChange)) {
             // curr.context = {};
             asyncCall(curr.onChange)(_.assign({}, event, { match: currMatch }), curr.context).catch(onError);
           }
@@ -186,7 +195,7 @@ export function generateSubscriptionByRoutes(routes) {
         // 离开
         if (hasArray(prevMatch) && currMatch === null) {
           const prev = routes[prevMatch.length > 1 ? path : prevPathName];
-          if (hasPlainObject(prev) && _.isFunction(prev.onLeave)) {
+          if (hasPlainObject(prev) && hasFunction(prev.onLeave)) {
             asyncCall(prev.onLeave)(_.assign({}, event, { match: prevMatch }), prev.context)
               .then(() => {
                 prev.context = {};
@@ -200,7 +209,7 @@ export function generateSubscriptionByRoutes(routes) {
         // 进入
         if (prevMatch === null && hasArray(currMatch)) {
           const curr = routes[currMatch.length > 1 ? path : currPathName];
-          if (hasPlainObject(curr) && _.isFunction(curr.onEnter)) {
+          if (hasPlainObject(curr) && hasFunction(curr.onEnter)) {
             curr.context = {};
             asyncCall(curr.onEnter)(_.assign({}, event, { match: currMatch }), curr.context).catch(onError);
           }
