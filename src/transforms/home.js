@@ -1,8 +1,8 @@
-import HomeServices from '@/services/home';
+import Services from '@/services/home';
 
 export function getData(data, dataOptions) {
   const request = payload => ({});
   const response = payload => ({});
 
-  return HomeServices.getData(request(data), dataOptions).then(response);
+  return Services.getData(request(data), dataOptions).then(response);
 }
