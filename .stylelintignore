@@ -11,6 +11,7 @@
 # umi
 .umi
 .umi-production
+.umi-test
 
 # ide
 .idea
