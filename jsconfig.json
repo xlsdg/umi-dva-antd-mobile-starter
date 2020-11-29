@@ -7,17 +7,10 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@@/*": ["src/.umi/*"]
     }
   },
   "include": ["src/**/*"],
-  "exclude": [
-    "node_modules",
-    "**/node_modules/*",
-    "dist",
-    "bower_components",
-    "tmp",
-    "temp",
-    "jspm_packages"
-  ]
+  "exclude": ["node_modules", "dist", "src/.umi/**/*"]
 }
