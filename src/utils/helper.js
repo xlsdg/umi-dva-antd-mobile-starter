@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
-import PathToRegexp from 'path-to-regexp';
+import { pathToRegexp as PathToRegexp } from 'path-to-regexp';
 // import FastDeepEqual from 'fast-deep-equal/es6/react';
 import { dequal as FastDeepEqual } from 'dequal';
 
