@@ -50,9 +50,9 @@
     "analyze": "cross-env ANALYZE=1 umi build",
     "build": "cross-env UMI_ENV=prod umi build",
     "dev": "cross-env UMI_ENV=local umi build",
-    "lint": "eslint --ext .jsx,.js src",
-    "lint:fix": "eslint --fix --ext .jsx,.js src && npm run lint:style",
-    "lint:style": "stylelint --fix \"src/**/*.less\" --syntax less",
+    "lint": "npm run lint:js && npm run lint:style",
+    "lint:js": "eslint --fix --ext .js,.jsx,.ts,.tsx src",
+    "lint:style": "stylelint --fix './src/**/*.{js,jsx,ts,tsx,less,scss,css}'",
     "prettier": "prettier --write './src/**/*.{js,jsx,ts,tsx,less,scss,css}'",
     "start": "umi dev",
     "test": "umi test"
