@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([[2],{Dtc0:function(e,n,t){"use strict";t.r(n);var a=t("q1tI"),r=t.n(a),c=t("Umnr"),i={container:"rRDCWTNT"};function o(e){return r.a.createElement("div",{className:i.container},"Home")}o.defaultProps={};var l=Object(c["a"])("",null,null,r.a.memo(o));l.title="page.index.title";n["default"]=l}}]);
