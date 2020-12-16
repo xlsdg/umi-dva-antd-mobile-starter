@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([[1],{GLXO:function(e,n,t){"use strict";t.r(n);var a=t("q1tI"),c=t.n(a),i={container:"_2FSFcznq"};function o(e){return c.a.createElement("div",{className:i.container},"404")}o.defaultProps={};var r=c.a.memo(o);r.title="page.404.title";n["default"]=r}}]);
