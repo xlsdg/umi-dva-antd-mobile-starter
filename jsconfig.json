@@ -3,6 +3,7 @@
     "noLib": false,
     // "target": "esnext",
     "checkJs": false,
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
