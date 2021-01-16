@@ -1,7 +1,32 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-config-recess-order", "stylelint-prettier/recommended"],
-  "plugins": ["stylelint-declaration-block-no-ignored-properties"],
-  "rules": {
-    "plugin/declaration-block-no-ignored-properties": true
+  extends: [
+    "stylelint-config-standard",
+    "stylelint-config-css-modules",
+    "stylelint-config-recess-order",
+    "stylelint-prettier/recommended"
+  ],
+  ignoreFiles: [
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  plugins: [
+    "stylelint-declaration-block-no-ignored-properties"
+  ],
+  rules: {
+    "font-family-no-missing-generic-family-keyword": null,
+    "function-calc-no-invalid": null,
+    "function-url-quotes": "always",
+    "no-descending-specificity": null,
+    "plugin/declaration-block-no-ignored-properties": true,
+    "unit-no-unknown": [
+      true,
+      {
+        ignoreUnits: [
+          "rpx"
+        ]
+      }
+    ]
   }
 }
