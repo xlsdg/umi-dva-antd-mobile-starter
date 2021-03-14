@@ -13,7 +13,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "reselect": "^4.0.0",
-    "umi": "^3.3.9",
+    "umi": "^3.4.2",
     "umi-request": "^1.3.5"
   },
   "devDependencies": {
@@ -22,11 +22,11 @@
     "@umijs/plugin-antd": "^0.9.1",
     "@umijs/plugin-dva": "^0.10.0",
     "@umijs/plugin-locale": "^0.10.9",
-    "@umijs/plugin-qiankun": "^2.22.1",
+    "@umijs/plugin-qiankun": "^2.23.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-lodash": "^3.3.4",
     "cross-env": "^7.0.3",
-    "eslint": "^7.21.0",
+    "eslint": "^7.22.0",
     "eslint-config-alloy": "^3.10.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
