@@ -20,16 +20,16 @@
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
     "@umijs/plugin-antd": "^0.9.1",
-    "@umijs/plugin-dva": "^0.11.0",
-    "@umijs/plugin-locale": "^0.10.10",
+    "@umijs/plugin-dva": "^0.11.1",
+    "@umijs/plugin-locale": "^0.11.0",
     "@umijs/plugin-qiankun": "^2.24.1",
     "babel-eslint": "^10.1.0",
     "babel-plugin-lodash": "^3.3.4",
     "cross-env": "^7.0.3",
-    "eslint": "^7.23.0",
+    "eslint": "^7.24.0",
     "eslint-config-alloy": "^3.10.0",
     "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-react": "^7.23.1",
+    "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^4.3.8",
     "lint-staged": "^10.5.4",
@@ -42,7 +42,7 @@
     "stylelint-config-standard": "^21.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
     "stylelint-prettier": "^1.2.0",
-    "vconsole": "^3.4.0"
+    "vconsole": "^3.4.1"
   },
   "engines": {
     "node": ">=10.13.0"
